@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-async def chromium_scustom(instance):
+async def chromium_custom(instance):
     """
     Inicializa uma instância do Chromium com contexto persistente e ambente controlado.
     Cria um perfil temporário, remove qualquer execução anterior
@@ -38,10 +38,10 @@ async def chromium_scustom(instance):
             "--disable-dev-shm-usage",
             "--disable-gpu"
         ],
-        chromium_settings=False
     )
 
-    return browser
+    page = browser.pages[0]
+    return browser, page
 
 async def start_browser():
     """
@@ -55,5 +55,5 @@ async def start_browser():
     from playwright.async_api import async_playwright
 
     playwright = await async_playwright().start()
-    browser = await chromium_scustom(playwright)
-    return playwright, browser
+    browser, page = await chromium_custom(playwright)
+    return playwright, browser, page
