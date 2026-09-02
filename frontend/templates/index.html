@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/global.css">
+    <title>Home</title>
 </head>
 <body>
-    <form action="" method="POST">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" required>
-        <button type="submit">Entrar</button>
-    </form>
+    {% include 'components/navbar.html' %}
+    <main>
+        <h1>Bem-vindo ao WaveHub</h1>
+        <p>O WaveHub é uma plataforma de compartilhamento de músicas e playlists.</p>
+        {% include 'components/forms.html' %}
 </body>
 </html>
