@@ -11,3 +11,16 @@ nav {
     border-radius: 0 0 8px 8px;
     color: #f1f1f1;
 }
+
+nav h1{
+    position: absolute;
+    left: 32px;
+    top: 15px;
+    margin: 0;
+    color: #f4f7fb;
+    font-family: var(--font-logo);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.5px;
+}
