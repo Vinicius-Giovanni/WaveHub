@@ -12,3 +12,9 @@ wheels/
 # files
 teste.py
 backend/settings/environment.py
+
+# Cookies
+cookies.json
+
+# .env
+.env
