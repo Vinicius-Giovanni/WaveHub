@@ -4,11 +4,10 @@ from fastapi.responses import HTMLResponse
 from backend.app.core.template import templates
 
 router = APIRouter(
-    prefix="/",
-    tags=["Landpage"]
+    tags=["Home"]
 )
 
-@router.get("/", response_class=HTMLResponse)
+@router.get("/home", response_class=HTMLResponse)
 async def landpage(request: Request):
     """
     Rota para a página inicial (landpage) da aplicação.

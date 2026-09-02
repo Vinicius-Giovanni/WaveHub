@@ -79,3 +79,14 @@ Criar uma plataforma centralizada para acompanhamento dos indicadores operaciona
 ## 🚧 Status
 
 **Em desenvolvimento.**
+
+
+---
+
+## Anotações
+
+```
+Execução local
+
+uv run uvicorn backend.app.main:app --reload
+```
