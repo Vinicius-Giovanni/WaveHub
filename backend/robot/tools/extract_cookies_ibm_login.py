@@ -9,6 +9,14 @@ from backend.settings.variables import LOGIN_ADM, PASSWORD_ADM
 class ExtractCookiesLoginIBM:
 
     async def login(page) -> list[dict]:
+        """
+        Realiza a extração e armazenamento dos cookies
+
+        Params
+            - **page** contexto de RPA
+        Returns
+            - **cookies** cookies extraidos
+        """
 
         # Direcionar para o IBM
         await page.goto(os.getenv('LINK_LOGIN_IBM'))
