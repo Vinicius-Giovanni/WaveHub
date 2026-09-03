@@ -90,3 +90,134 @@ Execução local
 
 uv run uvicorn backend.app.main:app --reload
 ```
+
+
+## 🔀 Fluxo de Branches
+
+O projeto utiliza um fluxo de desenvolvimento baseado em branches para organizar as alterações e evitar que modificações ainda não testadas sejam enviadas diretamente para produção.
+
+### 🌿 Branches utilizadas
+
+| Branch             | Objetivo                                                     |
+| ------------------ | ------------------------------------------------------------ |
+| `feature-backend`  | Desenvolvimento das funcionalidades relacionadas ao Backend  |
+| `feature-frontend` | Desenvolvimento das funcionalidades relacionadas ao Frontend |
+| `dev`              | Integração e testes das funcionalidades desenvolvidas        |
+| `production`       | Versão estável do projeto em produção                        |
+
+### 🔄 Ciclo de desenvolvimento
+
+O fluxo de desenvolvimento seguirá o seguinte ciclo:
+
+```text
+feature-backend ──┐
+                  ├──> dev ──> production
+feature-frontend ─┘
+```
+
+As branches `feature-backend` e `feature-frontend` são utilizadas para o desenvolvimento das funcionalidades.
+
+Após finalizar uma alteração, deve ser aberto um **Pull Request (PR)** direcionado para a branch `dev`.
+
+> ⚠️ As alterações não devem ser enviadas diretamente para `dev` ou `production`. O fluxo deve passar pelo Pull Request.
+
+### 1. Desenvolvimento
+
+Cada integrante deve trabalhar na branch correspondente à sua área:
+
+* Backend → `feature-backend`
+* Frontend → `feature-frontend`
+
+Exemplo:
+
+```bash
+git checkout feature-backend
+git pull origin feature-backend
+```
+
+Após realizar as alterações:
+
+```bash
+git add .
+git commit -m "feat: adiciona autenticação de usuários"
+```
+
+### 2. Pull Request para `dev`
+
+Depois que a implementação estiver concluída e revisada, deve ser criado um **Pull Request**:
+
+```text
+feature-backend
+       ↓
+      dev
+```
+
+ou
+
+```text
+feature-frontend
+       ↓
+      dev
+```
+
+O Pull Request deverá ser revisado e aprovado antes de ser integrado à `dev`.
+
+### 3. Testes na `dev`
+
+A branch `dev` funciona como ambiente de **integração e validação**.
+
+Periodicamente, as funcionalidades aprovadas serão integradas à `dev` e serão realizados testes para verificar se:
+
+* As novas funcionalidades estão funcionando corretamente;
+* O Backend e o Frontend estão funcionando em conjunto;
+* Não existem erros ou regressões;
+* As alterações não quebraram funcionalidades existentes.
+
+Caso sejam encontrados problemas, eles deverão ser corrigidos nas respectivas branches de desenvolvimento e posteriormente enviados novamente para `dev através de um novo Pull Request.
+
+### 4. Pull Request para `production`
+
+Quando todas as funcionalidades presentes em `dev` estiverem testadas e funcionando corretamente, será criado um Pull Request de:
+
+```text
+dev
+ ↓
+production
+```
+
+Após a aprovação e o merge, a branch `production` passará a conter a versão considerada **estável e pronta para produção**.
+
+---
+
+### 📌 Resumo do ciclo
+
+O ciclo completo será:
+
+```text
+┌──────────────────┐
+│ Desenvolvimento  │
+│                  │
+│ feature-backend  │
+│ feature-frontend │
+└────────┬─────────┘
+         │
+         │ Pull Request
+         ▼
+┌──────────────────┐
+│       dev        │
+│                  │
+│ Integração       │
+│ + Testes         │
+└────────┬─────────┘
+         │
+         │ Pull Request
+         │ após aprovação
+         ▼
+┌──────────────────┐
+│   production     │
+│                  │
+│ Versão estável   │
+└──────────────────┘
+```
+
+**Em resumo:** desenvolvemos nas branches de `feature`, enviamos as alterações para `dev` através de Pull Requests, realizamos os testes de integração em `dev` e, estando tudo funcionando corretamente, enviamos `dev` para `production` através de um novo Pull Request.
