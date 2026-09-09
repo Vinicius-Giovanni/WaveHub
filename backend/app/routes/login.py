@@ -11,7 +11,7 @@ router = APIRouter(
 async def login_page(request: Request):
     return templates.TemplateResponse(
         request=request,
-        name="index.html",
+        name="login.html",
     )
 
 @router.post("/login")
