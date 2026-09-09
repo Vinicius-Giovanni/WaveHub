@@ -6,34 +6,25 @@ nav {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    background-color: #0d1626;
+    background-color: var(--background-color);
     border: 1px solid #263142;
     border-radius: 0 0 8px 8px;
-    color: #f1f1f1;
+    color: var(--color-primary);
 }
 
-<<<<<<< HEAD
-nav h1 {
-=======
 nav h1{
->>>>>>> 7a38b44a14010142054e5164684e834f3bdad64a
     position: absolute;
     left: 32px;
     top: 15px;
     margin: 0;
-<<<<<<< HEAD
     color: var(--color-primary);
     font-family: var(--font-title);
-=======
-    color: #f4f7fb;
-    font-family: var(--font-logo);
->>>>>>> 7a38b44a14010142054e5164684e834f3bdad64a
     font-size: 20px;
     font-weight: 700;
     line-height: 1;
     letter-spacing: -0.5px;
-<<<<<<< HEAD
 }
+
 
 nav span {
     color: var(--color-secondary);
@@ -108,6 +99,4 @@ nav a:hover {
         padding: 0 10px;
         font-size: 13px;
     }
-=======
->>>>>>> 7a38b44a14010142054e5164684e834f3bdad64a
 }

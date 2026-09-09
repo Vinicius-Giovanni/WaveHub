@@ -1,0 +1,21 @@
+body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--background-color);
+    color: var(--color-primary);
+}
+
+nav {
+    position: relative;
+    min-height: 100vh;
+    padding: 38px 36px;
+    border-right: 1px solid #283547;
+}
+
+nav h1 {
+    color: var(--color-primary);
+    font-family: var(--font-title);
+    font-size: 20px;
+    font-weight: 700;
+}
