@@ -13,15 +13,14 @@ ELEMENTS_LOGIN = {
 }
 
 ELEMENTS_OLPN = {
-    'element_filial_id': 'dv17_ValueComboBox',
-    'element_title': 'tt',
-    'element_dt_start': 'dv67__tblDateTextBox__txtInput',
-    'element_dt_end': 'dv59__tblDateTextBox__txtInput',
-    'element_listbox': '//*[@id="dv75_MultiSelectList"]',
+    'element_filial_id': '#dv46_ValueComboBox',
+    'element_dt_start': '#dv89__tblDateTextBox__txtInput',
+    'element_dt_end': '#dv97__tblDateTextBox__txtInput',
+    'element_listbox': '#dv105_MultiSelectList',
     'elements_listbox': '//tr[@role="option" and @checkboxitem="true"]',
     'element_get_item': 'aria-label',
     'element_get_checked': 'aria-checked',
-    'element_confirm': 'dv135',
+    'element_confirm': '#dv165',
     'list_itens': [
         'S01 - ENTREGA A CLIENTES',
         'S02 - RETIRA CLIENTE DEPOSITO',
