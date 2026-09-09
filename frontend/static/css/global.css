@@ -3,10 +3,13 @@
 :root {
   --font-title: 'Space Grotesk', sans-serif;
   --font-body: 'Space Grotesk', sans-serif;
-  --color-primary: #f4fbf7 ;
+  --color-primary: #f4fbf7;
   --color-secondary: #37c5e8;
   --color-tertiary: #8f9bae;
   --background-color: #0d1626;
+  --border-color: #2b3749;
+  --box-shadow: rgba(66, 185, 216, 0.18);
+  --bg-icon: #12334a;
 }
 
 *{
