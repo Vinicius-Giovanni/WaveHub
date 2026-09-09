@@ -15,4 +15,5 @@ TEMP_PROFILE = PATH_PADRAO_LOCAL / "playwright-profile"
 
 TEMP_WAVEHUB = PATH_PADRAO_SHARE / "Compartilhados" / "WaveHub" / "Temporaria WaveHub"
 
-# Camada Bronze
+# Camada compartilhados
+OLPN_TEMP = TEMP_WAVEHUB / "3.11 - Status Wave + oLPN.csv"
