@@ -3,12 +3,14 @@ from pathlib import Path
 import duckdb
 import pandas as pd
 
+from backend.settings.paths import SQL_DIR
+
 class DataframeManager:
 
     def read_csv(
             file_path: Path,
             delimiter: str = ",",
-            encoding: str = "UTF-8",
+            encoding: str = "utf-16",
     ) -> pd.DataFrame:
         """
         Lê um arquivo CSV utilizando duckDB.
@@ -51,3 +53,42 @@ class DataframeManager:
             ).df()
 
         return df
+
+    def save_to_csv(df: pd.DataFrame,
+                    local_path_to_save: Path,
+                    sep: str = ";",
+                    encoding: str = "utf-8",
+                    ) -> None:
+        """
+        Salva o df em arquivo csv.
+
+        Args:
+            df: pd.DataDrame Dataframe que será salvo.
+            local_path_to_save Local que será salvo o arquivo reescrito.
+        """
+
+        df.to_csv(
+            path_or_buf=local_path_to_save,
+            sep=sep,
+            encoding=encoding,
+            index=False
+        )
+
+    def rename_columns(df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Faz a renomeação da colunas para o padrão snake, para leitura sádia do duckdb.
+
+        Args:
+            df: pd.DataFrame Dataframe que será renomeado
+
+        Returns:
+            Execução da query sql e retorno do df tratado.
+        """
+        sql_path = SQL_DIR / "snake_case_status_olpn.sql"
+
+        query = sql_path.read_text(encoding='utf-8')
+
+        with duckdb.connect() as con:
+            con.register('df', df)
+
+            return con.execute(query).fetchdf()
