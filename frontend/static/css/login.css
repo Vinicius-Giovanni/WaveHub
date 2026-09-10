@@ -15,33 +15,6 @@ body {
     border-right: 1px solid var(--border-color)
 }
 
-.brand {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.brand h1 {
-    margin: 0;
-    color: var(--color-primary);
-    font-family: var(--font-title);
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.5px;
-}
-
-.brand h1 span {
-    color: var(--color-secondary);
-}
-
-.brand p {
-    margin-top: 4px;
-    color: var(--color-terciary);
-    font-size: 12px;
-    line-height: 1;
-}
-
 .info-content {
     width: min(100%, 480px);
     margin-top: 67px;
@@ -77,23 +50,10 @@ body {
     min-height: 35px;
     display: flex;
     align-items: center;
-    gap: 12px;
     color: var(--color-terciary);
     font-size: 14px;
 }
 
-.info-content li .material-symbols-outlined {
-    width: 36px;
-    height: 36px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-secondary);
-    background: var(--bg-icon);
-    border-radius: 50%;
-    font-size: 20px;
-}
 
 .login-info footer {
     position: absolute;
@@ -113,7 +73,7 @@ body > main {
 }
 
 body > main form {
-    width: min(100%, 450);
+    width: min(100%, 450px);
     padding: 34px 32px 30px;
     background: var(--background-color);
     border: 1px solid var(--border-color);
@@ -234,6 +194,7 @@ form button:active {
 .create-account {
     margin-top: 20px;
     font-size: 12px;
+    text-align: center;
 }
 
 .create-account a{
