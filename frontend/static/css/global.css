@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300..700&display=swap');
 
+/* Variáveis */
 :root {
   --font-title: 'Space Grotesk', sans-serif;
   --font-body: 'Space Grotesk', sans-serif;
@@ -12,6 +13,7 @@
   --bg-icon: #12334a;
 }
 
+/* Reset */
 *{
   margin: 0;
   padding: 0;
@@ -19,4 +21,57 @@
   text-decoration: none;
   list-style: none;
   font-family: var(--font-body);
+}
+
+
+/* Logo */
+.brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.brand h1 {
+    margin: 0;
+    color: var(--color-primary);
+    font-family: var(--font-title);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.5px;
+}
+
+.brand h1 span {
+    color: var(--color-secondary);
+}
+
+.brand p {
+    margin-top: 4px;
+    color: var(--color-tertiary);
+    font-size: 12px;
+    line-height: 1;
+}
+
+.material-symbols-outlined {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background: transparent;
+}
+
+.icon {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--color-secondary);
+    background: var(--bg-icon);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    font-size: 20px;
+    margin-right: 8px;
 }
