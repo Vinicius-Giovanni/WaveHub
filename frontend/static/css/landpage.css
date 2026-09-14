@@ -28,7 +28,7 @@ body {
     gap: 4px;
 }
 
-.side-bar a {
+.sidebar a {
     min-height: 42px;
     padding: 0 13px;
     display: flex;
@@ -41,9 +41,124 @@ body {
     transition: 0.2s ease;
 }
 
-.side-bar a:hover,
+.sidebar-nav a:hover,
 .sidebar-nav a.active {
     color: var(--color-secundary);
     background: var(--box-shadow);
     border-color: #1d5874;
 }
+
+.sidebar-nav .material-symbols-outlined {
+    font-size: 19px;
+}
+
+.sidebar-section-title {
+    margin: 28px 14px 8px;
+    color: var(--color-tertiary);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.sidebar-profile {
+    margin-top: auto;
+    padding: 14px 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+}
+
+.sidebar-profile-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-name {
+    color: var(--color-primary);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.profile-email {
+    margin-top: 2px;
+    color: var(--color-tertiary);
+    font-size: 12px;
+}
+
+.profile-logout {
+    margin-top: 14px;
+    padding: 0 5;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-tertiary);
+    font-size: 14px;
+}
+
+.profile-logout:hover {
+    color: var(--color-secundary)
+}
+
+/* Conteúdo */
+
+.home-content {
+    grid-column: 2;
+    min-width: 0;
+    padding: 0 24px 50px;
+}
+
+/* Header */
+
+.home-header {
+    height: 61px;
+    margin: 0 -24px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--background-color);
+}
+
+.home-header-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-tertiary);
+    font-size: 14px;
+}
+
+.home-header-title .material-symbols-outlined {
+    font-size: 18px;
+}
+
+.home-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: right;
+}
+
+
+.home-user strong {
+    display: block;
+    color: var(--color-primary);
+    font-size: 14px;
+}
+
+
+.home-user span {
+    display: block;
+    margin-top: 2px;
+    color: var(--color-tertiary);
+    font-size: 12px;
+}
+
+/* Container */
+
+.home-container {
+    max-width: 1248px;
+    margin: 32px auto 0;
+}
+

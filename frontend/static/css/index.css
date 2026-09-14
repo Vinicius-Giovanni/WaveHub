@@ -134,7 +134,7 @@ main > h1 + p {
 .cards > div:not(.desc) {
     min-height: 188px;
     padding: 26px 20px;
-    background: #1b283a;
+    background: var(--bg-card);
     border: 1px solid #2b3749;
     border-radius: 18px;
     transition: 0.2s ease;
@@ -143,7 +143,7 @@ main > h1 + p {
 .cards > div:not(.desc):hover {
     transform: translateY(-4px);
     border-color: var(--color-secondary);
-    background: #1b283a;
+    background: var(--bg-card);
 }
 
 .cards > div:not(.desc) h2 {
@@ -171,7 +171,7 @@ main > h1 + p {
     align-items: center;
     justify-content: space-between;
     gap: 30px;
-    background: #1b283a;
+    background: var(--bg-card);
     border: 1px solid #2b3749;
     border-radius: 18px;
 }
