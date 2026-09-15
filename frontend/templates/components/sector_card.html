@@ -1,0 +1,67 @@
+<article class="sector-card">
+    <div class="sector-card-header">
+        <div class="sector-card-icon">
+            <span class="material-symbols-outlined">
+                {{ icon }}
+            </span>
+        </div>
+        <div>
+            <h3>
+                <!-- setor -->
+                {{ title }}
+            </h3>
+            <p>
+                <!-- tipode expedição e setor -->
+                 {{ type }} · {{ code }}
+            </p>
+        </div>
+    </div>
+
+    <div class="sector-card-metrics">
+         <div>
+            <span>
+                Demanda
+            </span>
+
+            <strong>
+                {{ demand }}
+            </strong>
+        </div>
+
+        <div>
+            <span>
+                Pessoas
+            </span>
+
+            <strong>
+                {{ people }}
+            </strong>
+        </div>
+
+        <div>
+            <span>
+                Finalizado
+            </span>
+
+            <strong>
+                {{ completed }}%
+            </strong>
+        </div>
+    </div>
+     <div class="sector-progress">
+
+        <!-- <span style="width: {{ progress }}%;"></span> -->
+
+    </div>
+
+    <a href="#" class="sector-card-button">
+        <span>
+            Ver detalhes
+        </span>
+
+        <span class="material-symbols-outlined">
+            arrow_forward
+        </span>
+    </a>
+
+</article>
