@@ -2,6 +2,7 @@ from __future__ import annotations
 
 async def chromium_custom(instance):
     """
+
     Inicializa uma instância do Chromium com contexto persistente e ambente controlado.
     Cria um perfil temporário, remove qualquer execução anterior
     e inicializa o navegador Chromium com configurações voltadas para automação estável
@@ -15,17 +16,17 @@ async def chromium_custom(instance):
 
     import shutil
 
-    from backend.settings.environment import temp_profile
+    from backend.settings.paths import TEMP_PROFILE
 
     # clear temp_rofile
-    if temp_profile.exists():
-        shutil.rmtree(temp_profile)
+    if TEMP_PROFILE.exists():
+        shutil.rmtree(TEMP_PROFILE)
     else:
-        temp_profile.mkdir(exist_ok=True, parents=True)
+        TEMP_PROFILE.mkdir(exist_ok=True, parents=True)
 
     # settings chromium
     browser = await instance.chromium.launch_persistent_context(
-        user_data_dir=str(temp_profile),
+        user_data_dir=str(TEMP_PROFILE),
         headless=False, # interface gráfica desativada
         args=[
             "--disable-popup-blocking",
