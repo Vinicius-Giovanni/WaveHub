@@ -25,6 +25,7 @@ body {
 .sidebar-nav {
     display: flex;
     flex-direction: column;
+    margin-top: 20px;
     gap: 4px;
 }
 
@@ -43,7 +44,7 @@ body {
 
 .sidebar-nav a:hover,
 .sidebar-nav a.active {
-    color: var(--color-secundary);
+    color: var(--color-secondary);
     background: var(--box-shadow);
     border-color: #1d5874;
 }
@@ -98,7 +99,7 @@ body {
 }
 
 .profile-logout:hover {
-    color: var(--color-secundary)
+    color: var(--color-secondary)
 }
 
 /* Conteúdo */
@@ -192,8 +193,17 @@ body {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 18px;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.2s ease;
 }
 
+.summary-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-secondary);
+    background: var(--bg-card);
+}
 
 .summary-card-label {
     color: var(--color-tertiary);
@@ -230,7 +240,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-secundary);
+    color: var(--color-secondary);
     background: var(--bg-icon);
     border-radius: 50%;
 }
@@ -295,6 +305,10 @@ body {
     font-size: 18px;
 }
 
+.filter-control input::placeholder{
+    color: var(--color-tertiary);
+}
+
 /* Operação */
 
 .operation-section {
@@ -320,7 +334,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-secundary);
+    color: var(--color-secondary);
     background: var(--bg-icon);
     border-radius: 50%;
 }
