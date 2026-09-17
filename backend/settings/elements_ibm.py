@@ -73,3 +73,10 @@ ELEMENTS_OLPN = {
         'S99 - Intercompany'
     ]
 }
+
+ELEMENTS_CANCEL = {
+        'element_filial_id': 'dv20_ValueComboBox',
+        'element_dt_start': 'dv72__tblDateTextBox__txtInput',
+        'element_dt_end': 'dv63__tblDateTextBox__txtInput',
+        'element_confirm': 'dv82'
+    },
