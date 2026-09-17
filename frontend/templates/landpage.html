@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+    <link rel="stylesheet" href="/static/css/global.css">
+    <link rel="stylesheet" href="/static/css/landpage.css">
+    <link rel="stylesheet" href="/static/css/sector_card.css">
+    <link rel="stylesheet" href="/static/css/sidebar.css">
+    <title>Início</title>
+</head>
+<body>
+    <div class="home-layout">
+
+        <!-- Sidebar -->
+        {% include 'components/sidebar.html' %}
+
+        <!-- Header -->
+
+        <section class="home-content">
+            <header class="home-header">
+                <div class="home-header-title">
+
+                    <span class="material-symbols-outlined">
+                        hub
+                    </span>
+
+                    Central inteligente de operações
+
+                </div>
+
+                <div class="home-user">
+                    <div>
+                        <strong>
+                            teste
+                        </strong>
+
+                        <span>
+                            Operações
+                        </span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="home-container">
+                <section class="home-intro">
+                    <h1>Olá, user</h1>
+                    <p>
+                        Aqui está o resumo operacional de hoje.
+                        Acompanhe demanda, volume de peças e
+                        percentual de execução por setor —
+                        use “Ver detalhes” para uma análise
+                        mais aprofundada.
+                    </p>
+                </section>
+
+                <section class="summary-grid">
+                    <article class="summary-card">
+                        <span class="summary-card-label">
+                            Demanda total
+                        </span>
+
+                        <strong class="summary-card-value">
+                            122.440
+                        </strong>
+
+                        <span class="summary-card-description">
+                            peças na operação
+                        </span>
+
+                        <div class="summary-card-icon">
+                            <span class="material-symbols-outlined">
+                                monitoring
+                            </span>
+                        </div>
+                    </article>
+
+                    <article class="summary-card">
+                        <span class="summary-card-label">
+                            Pessoas alocadas
+                        </span>
+
+                        <strong class="summary-card-value">
+                            514
+                        </strong>
+
+                        <span class="summary-card-description">
+                            pessoas na operação
+                        </span>
+
+                        <div class="summary-card-icon">
+                            <span class="material-symbols-outlined">
+                                group
+                            </span>
+                        </div>
+                    </article>
+
+                    <article class="summary-card">
+                        <span class="summary-card-label">
+                            Média finalizada
+                        </span>
+
+                        <strong class="summary-card-value">
+                            71%
+                        </strong>
+
+                        <span class="summary-card-description">
+                            média dos setores
+                        </span>
+
+                        <div class="summary-card-icon">
+
+                            <span class="material-symbols-outlined">
+                                percent
+                            </span>
+                        </div>
+                    </article>
+
+                    <article class="summary-card">
+                        <span class="summary-card-label">
+                            Setores ativos
+                        </span>
+
+                        <strong class="summary-card-value">
+                            8
+                        </strong>
+
+                        <span class="summary-card-description">
+                            inbound + outbound
+                        </span>
+
+                        <div class="summary-card-icon">
+
+                            <span class="material-symbols-outlined">
+                                layers
+                            </span>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- Filtros -->
+
+                <section class="filters">
+                    <div class="filter-group">
+
+                        <label for="data">
+                            Data
+                        </label>
+
+                        <div class="filter-control">
+
+                            <input
+                                type="text"
+                                id="data"
+                                value="14/09/2026"
+                            >
+
+                            <span class="material-symbols-outlined">
+                                calendar_month
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+
+                        <label for="turno">
+                            Turno
+                        </label>
+
+                        <div class="filter-control">
+
+                            <select id="turno">
+
+                                <option>
+                                    Todos os turnos
+                                </option>
+
+                                <option>
+                                    1º Turno
+                                </option>
+
+                                <option>
+                                    2º Turno
+                                </option>
+
+                                <option>
+                                    3º Turno
+                                </option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+
+                        <label for="tipo">
+                            Tipo
+                        </label>
+
+                        <div class="filter-control">
+
+                            <select id="tipo">
+
+                                <option>
+                                    Inbound e Outbound
+                                </option>
+
+                                <option>
+                                    Inbound
+                                </option>
+
+                                <option>
+                                    Outbound
+                                </option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+
+                        <label for="setor">
+                            Buscar setor
+                        </label>
+
+                        <div class="filter-control">
+
+                            <span class="material-symbols-outlined">
+                                search
+                            </span>
+
+                            <input
+                                type="text"
+                                id="setor"
+                                placeholder="Ex.: Recebimento"
+                            >
+                        </div>
+                    </div>
+                </section>
+
+                <section class="operation-section">
+                    <div class="operation-header">
+                        <div class="operation-title">
+                            <div class="operation-icon">
+                                <span class="material-symbols-outlined">
+                                    north
+                                </span>
+                            </div>
+
+                            <div>
+                                <h2>Outbound</h2>
+                                <p>
+                                    Expedição, abastecimento de lojas e pedidos online.
+                                </p>
+                            </div>
+                        </div>
+
+                        <span class="operation-count">
+                            5 setores
+                        </span>
+                    </div>
+
+                    <div class="sector-cards">
+                        <!-- inserir componestes card -->
+                         <article class="sector-card">
+                            <div class="sector-card-header">
+                                <div class="sector-card-icon">
+                                    <span class="material-symbols-outlined">
+                                        {{ icon }}
+                                    </span>
+                                </div>
+                                <div>
+                                    <h3>
+                                        <!-- setor -->
+                                        <!-- {{ title }} -->
+                                        CD 1200 Outbound
+                                    </h3>
+                                    <p>
+                                        Inbound · INB-1200
+                                        <!-- tipode expedição e setor -->
+                                        <!-- {{ type }} · {{ code }} -->
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="sector-card-metrics">
+                                <div>
+                                    <span>
+                                        Demanda
+                                    </span>
+
+                                    <strong>
+                                        <!-- {{ demand }} -->
+                                        21.480
+                                    </strong>
+                                </div>
+
+                                <div>
+                                    <span>
+                                        Pessoas
+                                    </span>
+
+                                    <strong>
+                                        <!-- {{ people }} -->
+                                        98
+                                    </strong>
+                                </div>
+
+                                <div>
+                                    <span>
+                                        Finalizado
+                                    </span>
+
+                                    <strong>
+                                        <!-- {{ completed }}% -->
+                                        71%
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="sector-progress">
+
+                                <!-- <span style="width: {{ progress }}%;"></span> -->
+
+                            </div>
+
+                            <a href="#" class="sector-card-button">
+                                <span>
+                                    Ver detalhes
+                                </span>
+
+                                <span class="material-symbols-outlined">
+                                    arrow_forward
+                                </span>
+                            </a>
+
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

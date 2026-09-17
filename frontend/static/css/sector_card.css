@@ -1,0 +1,129 @@
+/* Card */
+.sector-card {
+    width: 280px;
+    min-height: 260px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 17px;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.sector-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-secondary);
+    background: var(--bg-card);
+}
+
+.sector-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sector-card-icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-secondary);
+    background: var(--bg-icon);
+    border-radius: 50%;
+}
+
+.sector-card-icon .material-symbols-outlined {
+    font-size: 20px;
+}
+
+/* Cabeçalho card */
+.sector-card-header h3 {
+    color: var(--color-primary);
+    font-family: var(--font-title);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+.sector-card-header p {
+    margin-top: 4px;
+    color: var(--color-tertiary);
+    font-size: 12px;
+}
+
+/* Métricas */
+
+.sector-card-metrics {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+
+.sector-card-metrics span {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--color-tertiary);
+    font-size: 12px;
+}
+
+
+.sector-card-metrics strong {
+    color: var(--color-primary);
+
+    font-family: var(--font-title);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* Barra de progresso */
+
+.sector-progress {
+    height: 8px;
+    margin-top: 18px;
+    overflow: hidden;
+    background: var(--bg-progress-bar);
+    border-radius: 999px;
+}
+
+
+.sector-progress span {
+    display: block;
+    height: 100%;
+    background: #3cc768;
+    border-radius: inherit;
+}
+
+/* Botão */
+.sector-card-button {
+    height: 38px;
+    margin-top: auto;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--color-primary);
+    background: #2c394d;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.sector-card-button:hover {
+    color: var(--color-secondary);
+    background: #2c394d;
+}
+
+
+.sector-card-button .material-symbols-outlined {
+    font-size: 18px;
+}

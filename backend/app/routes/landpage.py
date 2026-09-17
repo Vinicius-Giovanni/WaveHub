@@ -19,6 +19,6 @@ async def landpage(request: Request):
         HTMLResponse: Resposta HTML renderizada com o template "index.html".
     """
     return templates.TemplateResponse(
-        "landpage.html",
-        {"request": request}
+        request=request,
+        name="index.html",
     )
