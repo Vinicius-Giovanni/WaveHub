@@ -1,13 +1,11 @@
 from __future__ import annotations
 
-from playwright.async_api import async_playwright
-
 from pathlib import Path
 
 
 from backend.robot.tools.status_olpn import StatusOlpnIBM
 from backend.robot.tools.extract_cookies_ibm_login import ExtractCookiesLoginIBM
-from backend.settings.chromium_settings import start_browser
+from backend.robot.tools.cancel import CancelIBM
 
 class IBM:
 
@@ -44,10 +42,24 @@ class IBM:
             init_date=init_date,
             last_date=last_date
         )
-    
 
-# Para rodar de forma sync
-"""
-if __name__ == "__main__":
-    asyncio.run(extrack_cookies_ibm())
-"""
+    async def call_cancel(
+            page,
+            cookies: list[dict],
+            download_dir: Path,
+            list_filial: list,
+            init_date: str,
+            last_date: str
+    ) -> None:
+        """
+        Faz a chamada da função de extração de relatórios 6.10
+        """
+
+        await CancelIBM.extract(
+            page=page,
+            cookies=cookies,
+            download_dir=download_dir,
+            list_filial=list_filial,
+            init_date=init_date,
+            last_date=last_date
+        )

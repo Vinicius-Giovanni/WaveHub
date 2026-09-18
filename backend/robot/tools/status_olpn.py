@@ -91,7 +91,6 @@ class StatusOlpnIBM:
                         await item.click()
 
             # Aguardar download de relatório
-
             async with page.expect_download() as download_info:
                 await frame.locator(ELEMENTS_OLPN['element_confirm']).click()
 

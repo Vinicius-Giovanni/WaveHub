@@ -39,4 +39,31 @@ class CancelIBM:
                 FRAME
             )
 
+            # Localizando disponibilidade de tabela de filials
+            _filial = frame.locator(ELEMENTS_CANCEL['element_filial_id'])
+
+            if _filial:
+                await _filial.select_option(filial) # < - definindo filial
+
+            # enviando data de inicio
+            await frame.locator(
+                ELEMENTS_CANCEL['element_dt_start']
+            ).fill(init_date)
+
+            # enviando data final
+
+            await frame.locator(
+                ELEMENTS_CANCEL['element_dt_end']
+            ).fill(last_date)
+
+            # aguardando download de relatório
+            async with page.expect_download() as download_info:
+                await frame.locator(ELEMENTS_CANCEL['element_confirm']).click()
+
+            download = await download_info.value
+
+            await download.save_as(
+                str(download_dir / download.suggested_filename)
+            )
+
             

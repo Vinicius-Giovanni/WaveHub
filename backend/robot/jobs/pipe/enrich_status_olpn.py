@@ -14,7 +14,7 @@ class EnrichStatusOlpn:
             encoding="utf-16"
         )
 
-        df = DataframeManager.rename_columns(df)
+        df = DataframeManager.rename_columns_olpn(df)
 
         df['setores'] = classify_setores_status_olpn(df)
 
