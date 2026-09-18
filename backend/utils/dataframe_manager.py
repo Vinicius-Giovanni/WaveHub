@@ -74,7 +74,7 @@ class DataframeManager:
             index=False
         )
 
-    def rename_columns(df: pd.DataFrame) -> pd.DataFrame:
+    def rename_columns_olpn(df: pd.DataFrame) -> pd.DataFrame:
         """
         Faz a renomeação da colunas para o padrão snake, para leitura sádia do duckdb.
 
@@ -85,6 +85,26 @@ class DataframeManager:
             Execução da query sql e retorno do df tratado.
         """
         sql_path = SQL_DIR / "snake_case_status_olpn.sql"
+
+        query = sql_path.read_text(encoding='utf-8')
+
+        with duckdb.connect() as con:
+            con.register('df', df)
+
+            return con.execute(query).fetchdf()
+
+
+    def rename_columns_cancel(df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Faz a renomeação da colunas para o padrão snake, para leitura sádia do duckdb.
+
+        Args:
+            df: pd.DataFrame Dataframe que será renomeado
+
+        Returns:
+            Execução da query sql e retorno do df tratado.
+        """
+        sql_path = SQL_DIR / "snake_case_cancel.sql"
 
         query = sql_path.read_text(encoding='utf-8')
 
