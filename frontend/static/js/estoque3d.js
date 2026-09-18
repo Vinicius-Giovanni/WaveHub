@@ -171,6 +171,9 @@ scene.add(ambientLight);
 const ESPACO_LOCAL = 2;
 const ESPACO_NIVEL = 1.5;
 const ESPACO_RUA = 8;
+const ALTURA_MAX_NIVEIS = 8;
+const FATOR_MARGEM_NIVEL = 0.8;
+const ESCALA_MIN_NIVEL = 0.15; 
 
 
 // ==============================
@@ -184,41 +187,94 @@ let todosCubos = [];          // todos os Mesh criados
 let cubosVisiveis = [];       // subconjunto respeitando os filtros atuais
 let mapaPorId = new Map();    // id da posição -> Mesh correspondente
 let mapaNiveis = new Map();   // rótulo do nível (ex: "1A") -> índice numérico (eixo Y)
-
+let mapaEscalaRua = new Map(); // rua -> fator de escala vertical do cubo
+let mapaIndiceRua = new Map(); // rua -> índice sequencial (separa ruas numéricas e alfanuméricas)
 let filtroStatusAtual = "todas";
 let filtroRuaAtual = "";
 
 
 // ==============================
-// MAPEAMENTO DE NÍVEIS ALFANUMÉRICOS
+// MAPEAMENTO DE NÍVEIS ALFANUMÉRICOS (normalização por rua)
 // Não dá pra usar parseInt puro: "0A", "1A", "1B", "RO" etc.
-// Ordena pelo número inicial (quando existe) e usa a posição
-// no ranking como índice do eixo Y, preservando o texto original
-// para exibição.
+// Cada rua é normalizada de forma independente para que nenhuma
+// rua fique visualmente mais alta que outra: o rank de cada nível
+// dentro da própria rua é convertido numa posição Y que nunca
+// ultrapassa a altura equivalente a ALTURA_MAX_NIVEIS cubos.
+// O rótulo original do nível nunca é alterado — isso afeta
+// somente o cálculo da coordenada Y do cubo.
 // ==============================
 
-function construirMapaNiveis(estoque) {
+function compararNiveis(a, b) {
+    const numA = parseInt(a) || 0;
+    const numB = parseInt(b) || 0;
 
-    const niveisUnicos = [...new Set(estoque.map(p => p.nivel))];
+    if (numA !== numB) return numA - numB;
 
-    niveisUnicos.sort((a, b) => {
-        const numA = parseInt(a) || 0;
-        const numB = parseInt(b) || 0;
+    return a.localeCompare(b);
+}
 
-        if (numA !== numB) return numA - numB;
+function construirMapaRuas(estoque) {
 
-        return a.localeCompare(b);
-    });
+    const ruasUnicas = [...new Set(estoque.map(p => p.rua))];
+
+    ruasUnicas.sort(compararNiveis);
 
     const mapa = new Map();
 
-    niveisUnicos.forEach((nivel, indice) => {
-        mapa.set(nivel, indice);
+    ruasUnicas.forEach((rua, indice) => {
+        mapa.set(rua, indice);
     });
 
     return mapa;
 }
 
+function construirMapaNiveis(estoque) {
+
+    const niveisPorRua = new Map();
+
+    for (const posicao of estoque) {
+        if (!niveisPorRua.has(posicao.rua)) {
+            niveisPorRua.set(posicao.rua, new Set());
+        }
+        niveisPorRua.get(posicao.rua).add(posicao.nivel);
+    }
+
+    const mapaNiveis = new Map();
+    const mapaEscalaRua = new Map();
+
+    const alturaMaximaUnidades = (ALTURA_MAX_NIVEIS - 1) * ESPACO_NIVEL;
+
+    for (const [rua, niveisSet] of niveisPorRua) {
+
+        const niveisOrdenados = [...niveisSet].sort(compararNiveis);
+        const totalNiveis = niveisOrdenados.length;
+
+        const espacamentoUsado =
+            totalNiveis <= ALTURA_MAX_NIVEIS
+                ? ESPACO_NIVEL
+                : alturaMaximaUnidades / (totalNiveis - 1);
+
+        // Escala vertical do cubo nesta rua: proporcional ao espaço
+        // realmente disponível entre níveis, com margem para sempre
+        // sobrar uma fresta entre andares. Nunca > 1 (tamanho padrão)
+        // nem < ESCALA_MIN_NIVEL (para continuar visível e clicável).
+        const escalaY = Math.min(
+            1,
+            Math.max(
+                ESCALA_MIN_NIVEL,
+                (espacamentoUsado / ESPACO_NIVEL) * FATOR_MARGEM_NIVEL
+            )
+        );
+
+        mapaEscalaRua.set(rua, escalaY);
+
+        niveisOrdenados.forEach((nivel, indice) => {
+            mapaNiveis.set(`${rua}|${nivel}`, indice * espacamentoUsado);
+        });
+    }
+
+    return { mapaNiveis, mapaEscalaRua };
+}
 
 // ==============================
 // ESTOQUE (modificado: guarda referência posição <-> cubo,
@@ -237,8 +293,10 @@ async function carregarEstoque() {
 
         const estoque = await response.json();
 
-        indicePosicoes = estoque;
-        mapaNiveis = construirMapaNiveis(estoque);
+        const resultado = construirMapaNiveis(estoque);
+        mapaNiveis = resultado.mapaNiveis;
+        mapaIndiceRua = construirMapaRuas(estoque);
+        mapaEscalaRua = resultado.mapaEscalaRua;
 
         const geometry = new THREE.BoxGeometry(
             1.5,
@@ -268,21 +326,23 @@ async function carregarEstoque() {
                 material
             );
 
-            const rua =
-                parseInt(posicao.rua) || 0;
+            const escalaY = mapaEscalaRua.get(posicao.rua) ?? 1;
+            cubo.scale.y = escalaY;
+
+            const ruaIndice =
+                mapaIndiceRua.get(posicao.rua) ?? 0;
 
             const local =
                 parseInt(posicao.local) || 0;
 
-            const indiceNivel =
-                mapaNiveis.get(posicao.nivel) ?? 0;
+            const y =
+                mapaNiveis.get(`${posicao.rua}|${posicao.nivel}`) ?? 0;
 
             cubo.position.set(
                 local * ESPACO_LOCAL,
-                indiceNivel * ESPACO_NIVEL,
-                rua * ESPACO_RUA
+                y,
+                ruaIndice * ESPACO_RUA
             );
-
             // Referência de ida e volta entre o Mesh e os dados originais
             cubo.userData.posicao = posicao;
 
@@ -348,10 +408,10 @@ function criarRotuloTexto(texto) {
 function criarReferenciasRuas(ruas) {
 
     ruas.forEach(rua => {
-        const ruaNum = parseInt(rua) || 0;
+        const ruaIndice = mapaIndiceRua.get(rua) ?? 0;
         const rotulo = criarRotuloTexto(`Rua ${rua}`);
 
-        rotulo.position.set(-4, 1, ruaNum * ESPACO_RUA);
+        rotulo.position.set(-4, 1, ruaIndice * ESPACO_RUA);
         scene.add(rotulo);
     });
 }
@@ -377,6 +437,7 @@ scene.add(cuboDestaque);
 
 function posicionarDestaque(cubo) {
     cuboDestaque.position.copy(cubo.position);
+    cuboDestaque.scale.copy(cubo.scale).multiplyScalar(1.2);
     cuboDestaque.visible = true;
 }
 
