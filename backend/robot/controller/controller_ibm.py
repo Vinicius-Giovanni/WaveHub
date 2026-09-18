@@ -24,14 +24,22 @@ async def _controller() -> None:
         #     last_date="09/09/2026",
         # )
 
-        cancel_page = await browser.new_page()
-        await IBM.call_cancel(
-            page=cancel_page,
+        # cancel_page = await browser.new_page()
+        # await IBM.call_cancel(
+        #     page=cancel_page,
+        #     cookies=cookies,
+        #     download_dir=TEMP_WAVEHUB,
+        #     list_filial=["1200"],
+        #     init_date="08/09/2026",
+        #     last_date="09/09/2026"
+        # )
+
+        posicoes_page = await browser.new_page()
+        await IBM.call_posicoes(
+            page=posicoes_page,
             cookies=cookies,
             download_dir=TEMP_WAVEHUB,
-            list_filial=["1200"],
-            init_date="08/09/2026",
-            last_date="09/09/2026"
+            list_filial=["1200"]
         )
 
         await browser.close()

@@ -80,3 +80,9 @@ ELEMENTS_CANCEL = {
         'element_dt_end': '#dv100__tblDateTextBox__txtInput',
         'element_confirm': '#dv110'
     }
+
+
+ELEMENTS_POSICOES_OCUPADAS_E_VAZIAS = {
+    'element_filial_id': '#dv31_ValueComboBox',
+    'element_confirm': '#dv115'
+}

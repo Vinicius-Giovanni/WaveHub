@@ -6,6 +6,7 @@ from pathlib import Path
 from backend.robot.tools.status_olpn import StatusOlpnIBM
 from backend.robot.tools.extract_cookies_ibm_login import ExtractCookiesLoginIBM
 from backend.robot.tools.cancel import CancelIBM
+from backend.robot.tools.posicoes_ocupadas_e_vazias import PosicoesIBM
 
 class IBM:
 
@@ -62,4 +63,21 @@ class IBM:
             list_filial=list_filial,
             init_date=init_date,
             last_date=last_date
+        )
+
+    async def call_posicoes(
+            page,
+            cookies: list[dict],
+            download_dir: Path,
+            list_filial: list,    
+    ) -> None:
+        """
+        Faz a chamada da função de extração relatório 2.04
+        """
+
+        await PosicoesIBM.extract(
+            page=page,
+            cookies=cookies,
+            download_dir=download_dir,
+            list_filial=list_filial,
         )
