@@ -4,6 +4,7 @@ from fastapi import FastAPI
 
 from backend.app.routes.login import router as login_router
 from backend.app.routes.landpage import router as landpage_router
+from backend.app.routes.estoque import router as estoque_router
 
 def create_app() -> FastAPI:
     """
@@ -22,5 +23,6 @@ def create_app() -> FastAPI:
     #rotas
     app.include_router(login_router)
     app.include_router(landpage_router)
+    app.include_router(estoque_router)
     
     return app
