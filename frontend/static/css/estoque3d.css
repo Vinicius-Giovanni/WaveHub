@@ -2,3 +2,187 @@
     width: 100%;
     height: 100vh;
 }
+
+/* ==============================
+   UI sobre a cena 3D
+   Tudo fixo, com pointer-events controlado para não brigar
+   com o Pointer Lock (clique fora da UI continua ativando/
+   controlando a câmera normalmente).
+   ============================== */
+
+#crosshair {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+    z-index: 20;
+}
+
+#busca-container,
+#filtros-container,
+#legenda-container,
+#painel-detalhes {
+    position: fixed;
+    pointer-events: auto;
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #222;
+    z-index: 30;
+}
+
+/* Busca */
+
+#busca-container {
+    top: 16px;
+    left: 16px;
+    width: 320px;
+}
+
+#busca-input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+#busca-resultados {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0;
+    max-height: 260px;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 6px;
+}
+
+#busca-resultados:not(:empty) {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+#busca-resultados li {
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+#busca-resultados li:hover {
+    background: #f2f6ff;
+}
+
+#busca-resultados li:last-child {
+    border-bottom: none;
+}
+
+/* Filtros */
+
+#filtros-container {
+    top: 16px;
+    right: 16px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.filtro-btn {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.filtro-btn.ativo {
+    background: #2196f3;
+    color: #fff;
+    border-color: #2196f3;
+}
+
+#filtro-rua {
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* Legenda */
+
+#legenda-container {
+    bottom: 16px;
+    left: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 14px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.legenda-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+.legenda-item:last-child {
+    margin-bottom: 0;
+}
+
+.legenda-cor {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.legenda-ocupada {
+    background: #2196f3;
+}
+
+.legenda-vazia {
+    background: #aaaaaa;
+}
+
+.legenda-selecionada {
+    background: #ffcc00;
+}
+
+/* Painel de detalhes */
+
+#painel-detalhes {
+    top: 70px;
+    right: 16px;
+    width: 320px;
+    max-height: calc(100vh - 86px);
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    padding: 16px;
+}
+
+#painel-detalhes.oculto {
+    display: none;
+}
+
+#painel-fechar {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    border: none;
+    background: none;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    color: #666;
+}
+
+.painel-item {
+    border-top: 1px solid #eee;
+    padding-top: 8px;
+    margin-top: 8px;
+}

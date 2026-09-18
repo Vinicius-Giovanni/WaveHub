@@ -22,6 +22,44 @@
 
     <main>
         <div id="estoque-3d"></div>
+
+        <!-- Mira central: usada como referência de clique quando o Pointer Lock está ativo -->
+        <div id="crosshair"></div>
+
+        <!-- Busca -->
+        <div id="busca-container">
+            <input
+                type="text"
+                id="busca-input"
+                placeholder="Buscar: 002-015-03, item:5286255, rua:002..."
+                autocomplete="off"
+            >
+            <ul id="busca-resultados"></ul>
+        </div>
+
+        <!-- Filtros -->
+        <div id="filtros-container">
+            <button class="filtro-btn ativo" data-filtro="todas">Todas</button>
+            <button class="filtro-btn" data-filtro="ocupada">Ocupadas</button>
+            <button class="filtro-btn" data-filtro="vazia">Vazias</button>
+            <select id="filtro-rua">
+                <option value="">Rua: todas</option>
+            </select>
+        </div>
+
+        <!-- Legenda -->
+        <div id="legenda-container">
+            <div class="legenda-item"><span class="legenda-cor legenda-ocupada"></span> Ocupada</div>
+            <div class="legenda-item"><span class="legenda-cor legenda-vazia"></span> Vazia</div>
+            <div class="legenda-item"><span class="legenda-cor legenda-selecionada"></span> Selecionada</div>
+        </div>
+
+        <!-- Painel de detalhes da posição -->
+        <div id="painel-detalhes" class="oculto">
+            <button id="painel-fechar" aria-label="Fechar">×</button>
+            <h3 id="painel-titulo"></h3>
+            <div id="painel-conteudo"></div>
+        </div>
     </main>
 
     <script type="module" src="/static/js/estoque3d.js"></script>
