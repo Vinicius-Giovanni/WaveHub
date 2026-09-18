@@ -30,3 +30,16 @@ class BussinesRules:
             result = con.execute(query).fetchdf()
 
         return result['setor']
+
+
+    def enrich_posicao_ocup_vazia_columns(df: pd.DataFrame) -> pd.DataFrame:
+        sql_path = SQL_DIR / "detailed_ways.sql"
+
+        query = sql_path.read_text(encoding="utf-8")
+
+        with duckdb.connect() as con:
+            con.register("df", df)
+
+            result = con.execute(query).fetchdf()
+
+        return result

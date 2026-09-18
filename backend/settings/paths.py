@@ -18,6 +18,7 @@ TEMP_WAVEHUB = PATH_PADRAO_SHARE / "Compartilhados" / "WaveHub" / "Temporaria Wa
 # Camada compartilhados
 OLPN_TEMP = TEMP_WAVEHUB / "3.11 - Status Wave + oLPN.csv"
 CANCEL_TEMP = TEMP_WAVEHUB / "6.10 - Pedidos Cancelados.csv"
+POSICOES_OCUP_VAZI_TEMP = TEMP_WAVEHUB / "2.04 - Posições ocupadas e vazias.csv"
 
 # slq
 SQL_DIR = Path("backend/robot/jobs/pipe/sql")
