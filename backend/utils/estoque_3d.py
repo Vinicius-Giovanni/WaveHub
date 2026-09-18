@@ -46,13 +46,19 @@ def prepare_estoque_3d(df: pd.DataFrame) -> list[dict]:
             if (grupo["ocupacao"] == "Ocupada").any()
             else "vazia"
         )
-        
+
+        primeira_linha = grupo.iloc[0]
+
         posicoes.append({
             "id": f"{rua}-{local}-{nivel}",
             "rua": str(rua),
             "local": str(local),
             "nivel": str(nivel),
             "status": status,
+            "zona": str(primeira_linha["zona"]),
+            "tipo_de_eqp": str(primeira_linha["tipo_de_eqp"]),
+            "tipo_do_local": str(primeira_linha["tipo_do_local"]),
+            "habilitado": bool(primeira_linha["habilitado"]),
             "itens": itens
         })
 

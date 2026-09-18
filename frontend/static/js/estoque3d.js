@@ -10,7 +10,9 @@ const container = document.getElementById("estoque-3d");
 
 const scene = new THREE.Scene();
 
-scene.background = new THREE.Color(0xeeeeee);
+const COR_FUNDO = 0x1E1E1E;
+scene.background = new THREE.Color(COR_FUNDO);
+scene.fog = new THREE.Fog(COR_FUNDO, 250, 2200);
 
 
 // ==============================
@@ -148,20 +150,88 @@ function atualizarMovimento(deltaTime) {
 
     if (teclas.subir) camera.position.y += distancia;
     if (teclas.descer) camera.position.y -= distancia;
+
+    limitarAlturaCamera();
 }
 
-
 // ==============================
-// ILUMINAÇÃO — inalterado
+// ILUMINAÇÃO
+// Combinação de luz ambiente + hemisférica + direcional para
+// dar sombreamento real aos cubos (facilita distinguir volumes
+// e profundidade, ao invés do material "chapado" de antes).
 // ==============================
 
-const ambientLight = new THREE.AmbientLight(
-    0xffffff,
-    1
-);
-
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(ambientLight);
 
+const hemiLight = new THREE.HemisphereLight(0x8fa8c9, 0x1a1d22, 0.6);
+scene.add(hemiLight);
+
+const dirLight = new THREE.DirectionalLight(0xffffff, 0.9);
+dirLight.position.set(300, 500, 200);
+scene.add(dirLight);
+
+// ==============================
+// CHÃO
+// Piso visual (com grade sutil para referência de escala) e
+// limite de altura mínima da câmera, para o usuário não
+// atravessar o chão com WASD, zoom ou navegação.
+// ==============================
+
+const ALTURA_PISO = -1.5;
+const LIMITE_ALTURA_CAMERA = ALTURA_PISO + 3;
+
+function criarTexturaGrade() {
+
+    const canvas = document.createElement("canvas");
+    canvas.width = 256;
+    canvas.height = 256;
+
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#383838";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+    ctx.lineWidth = 2;
+
+    for (let i = 0; i <= canvas.width; i += 32) {
+        ctx.beginPath();
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i, canvas.height);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(0, i);
+        ctx.lineTo(canvas.width, i);
+        ctx.stroke();
+    }
+
+    const textura = new THREE.CanvasTexture(canvas);
+    textura.wrapS = THREE.RepeatWrapping;
+    textura.wrapT = THREE.RepeatWrapping;
+    textura.repeat.set(120, 120);
+
+    return textura;
+}
+
+const pisoGeometry = new THREE.PlaneGeometry(6000, 6000);
+const pisoMaterial = new THREE.MeshStandardMaterial({
+    color: 0x383838,
+    map: criarTexturaGrade(),
+    roughness: 1,
+    metalness: 0
+});
+
+const piso = new THREE.Mesh(pisoGeometry, pisoMaterial);
+piso.rotation.x = -Math.PI / 2;
+piso.position.y = ALTURA_PISO;
+scene.add(piso);
+
+function limitarAlturaCamera() {
+    if (camera.position.y < LIMITE_ALTURA_CAMERA) {
+        camera.position.y = LIMITE_ALTURA_CAMERA;
+    }
+}
 
 // ==============================
 // ESPAÇAMENTO DA GRADE (movido para o topo do módulo
@@ -191,6 +261,20 @@ let mapaEscalaRua = new Map(); // rua -> fator de escala vertical do cubo
 let mapaIndiceRua = new Map(); // rua -> índice sequencial (separa ruas numéricas e alfanuméricas)
 let filtroStatusAtual = "todas";
 let filtroRuaAtual = "";
+let filtroHabilitadoAtual = "todas";
+let filtroZonaAtual = "";
+let filtroTipoEqpAtual = "";
+let filtroTipoLocalAtual = "";
+
+function ehHabilitado(valor) {
+    if (typeof valor === "boolean") return valor;
+    if (typeof valor === "number") return valor === 1;
+    if (typeof valor === "string") {
+        const v = valor.trim().toLowerCase();
+        return v === "true" || v === "s" || v === "sim" || v === "1" || v === "habilitado";
+    }
+    return false;
+}
 
 
 // ==============================
@@ -292,6 +376,7 @@ async function carregarEstoque() {
         }
 
         const estoque = await response.json();
+        indicePosicoes = estoque;
 
         const resultado = construirMapaNiveis(estoque);
         mapaNiveis = resultado.mapaNiveis;
@@ -304,15 +389,24 @@ async function carregarEstoque() {
             1.5
         );
 
-        const materialOcupada = new THREE.MeshBasicMaterial({
-            color: 0x2196f3
+        const materialOcupada = new THREE.MeshStandardMaterial({
+            color: 0x2f8fff,
+            roughness: 0.4,
+            metalness: 0.1
         });
 
-        const materialVazia = new THREE.MeshBasicMaterial({
-            color: 0xaaaaaa
+        const materialVazia = new THREE.MeshStandardMaterial({
+            color: 0x4a5568,
+            roughness: 0.9,
+            metalness: 0,
+            transparent: true,
+            opacity: 0.75
         });
 
         const ruasEncontradas = new Set();
+        const zonasEncontradas = new Set();
+        const tiposEqpEncontrados = new Set();
+        const tiposLocalEncontrados = new Set();
 
         for (const posicao of estoque) {
 
@@ -351,12 +445,17 @@ async function carregarEstoque() {
             todosCubos.push(cubo);
             mapaPorId.set(posicao.id, cubo);
             ruasEncontradas.add(posicao.rua);
+            if (posicao.zona) zonasEncontradas.add(posicao.zona);
+            if (posicao.tipo_de_eqp) tiposEqpEncontrados.add(posicao.tipo_de_eqp);
+            if (posicao.tipo_do_local) tiposLocalEncontrados.add(posicao.tipo_do_local);
         }
+   
+        preencherSelect(filtroRuaSelect, [...ruasEncontradas]);
+        preencherSelect(filtroZonaSelect, [...zonasEncontradas]);
+        preencherSelect(filtroTipoEqpSelect, [...tiposEqpEncontrados]);
+        preencherSelect(filtroTipoLocalSelect, [...tiposLocalEncontrados]);
 
-        cubosVisiveis = todosCubos.slice();
-
-        criarReferenciasRuas([...ruasEncontradas]);
-        preencherFiltroRuas([...ruasEncontradas]);
+        aplicarFiltros(); // já popula cubosVisiveis e calcula o dashboard inicial
 
         console.log(
             `Posições carregadas: ${estoque.length}`
@@ -370,52 +469,6 @@ async function carregarEstoque() {
         );
     }
 }
-
-
-// ==============================
-// REFERÊNCIAS VISUAIS DE RUA
-// Rótulos discretos (sprites) no início de cada corredor,
-// usando a mesma coordenada Z já usada pelos cubos.
-// ==============================
-
-function criarRotuloTexto(texto) {
-
-    const canvas = document.createElement("canvas");
-    canvas.width = 256;
-    canvas.height = 64;
-
-    const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 28px sans-serif";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(texto, canvas.width / 2, canvas.height / 2);
-
-    const textura = new THREE.CanvasTexture(canvas);
-    const material = new THREE.SpriteMaterial({
-        map: textura,
-        depthTest: false
-    });
-
-    const sprite = new THREE.Sprite(material);
-    sprite.scale.set(6, 1.5, 1);
-
-    return sprite;
-}
-
-function criarReferenciasRuas(ruas) {
-
-    ruas.forEach(rua => {
-        const ruaIndice = mapaIndiceRua.get(rua) ?? 0;
-        const rotulo = criarRotuloTexto(`Rua ${rua}`);
-
-        rotulo.position.set(-4, 1, ruaIndice * ESPACO_RUA);
-        scene.add(rotulo);
-    });
-}
-
 
 // ==============================
 // DESTAQUE VISUAL
@@ -460,7 +513,27 @@ const painelFechar = document.getElementById("painel-fechar");
 
 const filtroRuaSelect = document.getElementById("filtro-rua");
 const botoesFiltro = document.querySelectorAll(".filtro-btn");
+const filtroHabilitadoSelect = document.getElementById("filtro-habilitado");
+const filtroZonaSelect = document.getElementById("filtro-zona");
+const filtroTipoEqpSelect = document.getElementById("filtro-tipo-eqp");
+const filtroTipoLocalSelect = document.getElementById("filtro-tipo-local");
 
+const dashboardContainer = document.getElementById("dashboard-container");
+const dashboardToggle = document.getElementById("dashboard-toggle");
+
+const dashboardCampos = {
+    ruas: document.getElementById("db-ruas"),
+    total: document.getElementById("db-total"),
+    ocupadas: document.getElementById("db-ocupadas"),
+    vazias: document.getElementById("db-vazias"),
+    itens: document.getElementById("db-itens"),
+    zonas: document.getElementById("db-zonas"),
+    niveis: document.getElementById("db-niveis"),
+    locais: document.getElementById("db-locais"),
+    ocupacao: document.getElementById("db-ocupacao"),
+    habilitadas: document.getElementById("db-habilitadas"),
+    naoHabilitadas: document.getElementById("db-nao-habilitadas")
+};
 
 // ==============================
 // SELEÇÃO (clique no cubo + resultado de busca)
@@ -603,6 +676,14 @@ function buscarPosicoes(consulta) {
     const porIdExato = indicePosicoes.find(p => p.id.toLowerCase() === termo);
     if (porIdExato) return [porIdExato];
 
+    const resultadosRua = indicePosicoes.filter(posicao =>
+        String(posicao.rua ?? "").trim().toLowerCase() === termo
+    );
+
+    if (resultadosRua.length > 0) {
+        return resultadosRua.slice(0, LIMITE_RESULTADOS);
+    }
+
     const resultados = [];
     const vistos = new Set();
 
@@ -692,12 +773,34 @@ function aplicarFiltros() {
         const passaRua =
             !filtroRuaAtual || posicao.rua === filtroRuaAtual;
 
-        const visivel = passaStatus && passaRua;
+        const passaHabilitado =
+            filtroHabilitadoAtual === "todas" ||
+            (filtroHabilitadoAtual === "sim" && ehHabilitado(posicao.habilitado)) ||
+            (filtroHabilitadoAtual === "nao" && !ehHabilitado(posicao.habilitado));
+
+        const passaZona =
+            !filtroZonaAtual || posicao.zona === filtroZonaAtual;
+
+        const passaTipoEqp =
+            !filtroTipoEqpAtual || posicao.tipo_de_eqp === filtroTipoEqpAtual;
+
+        const passaTipoLocal =
+            !filtroTipoLocalAtual || posicao.tipo_do_local === filtroTipoLocalAtual;
+
+        const visivel =
+            passaStatus &&
+            passaRua &&
+            passaHabilitado &&
+            passaZona &&
+            passaTipoEqp &&
+            passaTipoLocal;
 
         cubo.visible = visivel;
 
         if (visivel) cubosVisiveis.push(cubo);
     }
+
+    atualizarDashboard();
 }
 
 botoesFiltro.forEach(botao => {
@@ -710,23 +813,53 @@ botoesFiltro.forEach(botao => {
     });
 });
 
-function preencherFiltroRuas(ruas) {
+function preencherSelect(select, valores, prefixoLabel) {
 
-    if (!filtroRuaSelect) return;
+    if (!select) return;
 
-    const ruasOrdenadas = ruas.slice().sort();
+    const valoresOrdenados = [...new Set(
+        valores.filter(v => v !== undefined && v !== null && v !== "")
+    )].sort();
 
-    ruasOrdenadas.forEach(rua => {
+    valoresOrdenados.forEach(valor => {
         const option = document.createElement("option");
-        option.value = rua;
-        option.textContent = `Rua ${rua}`;
-        filtroRuaSelect.appendChild(option);
+        option.value = valor;
+        option.textContent = prefixoLabel ? `${prefixoLabel} ${valor}` : valor;
+        select.appendChild(option);
     });
 }
 
 if (filtroRuaSelect) {
     filtroRuaSelect.addEventListener("change", () => {
         filtroRuaAtual = filtroRuaSelect.value;
+        aplicarFiltros();
+    });
+}
+
+if (filtroHabilitadoSelect) {
+    filtroHabilitadoSelect.addEventListener("change", () => {
+        filtroHabilitadoAtual = filtroHabilitadoSelect.value;
+        aplicarFiltros();
+    });
+}
+
+if (filtroZonaSelect) {
+    filtroZonaSelect.addEventListener("change", () => {
+        filtroZonaAtual = filtroZonaSelect.value;
+        aplicarFiltros();
+    });
+}
+
+if (filtroTipoEqpSelect) {
+    filtroTipoEqpSelect.addEventListener("change", () => {
+        filtroTipoEqpAtual = filtroTipoEqpSelect.value;
+        aplicarFiltros();
+    });
+}
+
+if (filtroTipoLocalSelect) {
+    filtroTipoLocalSelect.addEventListener("change", () => {
+        filtroTipoLocalAtual = filtroTipoLocalSelect.value;
         aplicarFiltros();
     });
 }
@@ -850,6 +983,8 @@ renderer.domElement.addEventListener("wheel", (event) => {
 
     camera.position.addScaledVector(direction, passo);
 
+    limitarAlturaCamera();
+
 }, { passive: false });
 
 
@@ -878,6 +1013,76 @@ function animate() {
 
 animate();
 
+// ==============================
+// DASHBOARD FLUTUANTE
+// Lê exclusivamente cubosVisiveis (já filtrado por aplicarFiltros)
+// — nenhuma chamada nova à API, nenhuma fonte de dados extra.
+// ==============================
+
+function atualizarDashboard() {
+
+    if (!dashboardCampos.total) return;
+
+    const ruas = new Set();
+    const zonas = new Set();
+    const niveis = new Set();
+    const locais = new Set();
+    const ruasHabilitadas = new Set();
+    const ruasNaoHabilitadas = new Set();
+
+    let ocupadas = 0;
+    let vazias = 0;
+    let totalItens = 0;
+
+    for (const cubo of cubosVisiveis) {
+
+        const posicao = cubo.userData.posicao;
+
+        ruas.add(posicao.rua);
+        if (posicao.zona) zonas.add(posicao.zona);
+        niveis.add(posicao.nivel);
+        locais.add(posicao.local);
+
+        if (posicao.status === "ocupada") {
+            ocupadas++;
+        } else {
+            vazias++;
+        }
+
+        totalItens += (posicao.itens || []).reduce(
+            (total, item) => total + (Number(item.quantidade) || 0),
+            0
+        );
+
+        if (ehHabilitado(posicao.habilitado)) {
+            ruasHabilitadas.add(posicao.rua);
+        } else {
+            ruasNaoHabilitadas.add(posicao.rua);
+        }
+    }
+
+    const total = cubosVisiveis.length;
+    const percentualOcupacao = total > 0 ? ((ocupadas / total) * 100).toFixed(1) : "0.0";
+
+    dashboardCampos.ruas.textContent = ruas.size;
+    dashboardCampos.total.textContent = total;
+    dashboardCampos.ocupadas.textContent = ocupadas;
+    dashboardCampos.vazias.textContent = vazias;
+    dashboardCampos.itens.textContent = totalItens;
+    dashboardCampos.zonas.textContent = zonas.size;
+    dashboardCampos.niveis.textContent = niveis.size;
+    dashboardCampos.locais.textContent = locais.size;
+    dashboardCampos.ocupacao.textContent = `${percentualOcupacao}%`;
+    dashboardCampos.habilitadas.textContent = ruasHabilitadas.size;
+    dashboardCampos.naoHabilitadas.textContent = ruasNaoHabilitadas.size;
+}
+
+if (dashboardToggle && dashboardContainer) {
+    dashboardToggle.addEventListener("click", () => {
+        const fechado = dashboardContainer.classList.toggle("dashboard-fechado");
+        dashboardToggle.setAttribute("aria-expanded", String(!fechado));
+    });
+}
 
 // ==============================
 // INICIALIZAÇÃO — inalterado

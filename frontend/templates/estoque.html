@@ -23,7 +23,6 @@
     <main>
         <div id="estoque-3d"></div>
 
-        <!-- Mira central: usada como referência de clique quando o Pointer Lock está ativo -->
         <div id="crosshair"></div>
 
         <!-- Busca -->
@@ -42,8 +41,27 @@
             <button class="filtro-btn ativo" data-filtro="todas">Todas</button>
             <button class="filtro-btn" data-filtro="ocupada">Ocupadas</button>
             <button class="filtro-btn" data-filtro="vazia">Vazias</button>
+
             <select id="filtro-rua">
                 <option value="">Rua: todas</option>
+            </select>
+
+            <select id="filtro-habilitado">
+                <option value="todas">Habilitado: todos</option>
+                <option value="sim">Habilitados</option>
+                <option value="nao">Não habilitados</option>
+            </select>
+
+            <select id="filtro-zona">
+                <option value="">Zona: todas</option>
+            </select>
+
+            <select id="filtro-tipo-eqp">
+                <option value="">Equipamento: todos</option>
+            </select>
+
+            <select id="filtro-tipo-local">
+                <option value="">Tipo de local: todos</option>
             </select>
         </div>
 
@@ -59,6 +77,61 @@
             <button id="painel-fechar" aria-label="Fechar">×</button>
             <h3 id="painel-titulo"></h3>
             <div id="painel-conteudo"></div>
+        </div>
+
+        <!-- Dashboard flutuante -->
+        <div id="dashboard-container">
+            <div id="dashboard-header">
+                <span id="dashboard-titulo">Resumo da visualização</span>
+                <button id="dashboard-toggle" aria-expanded="true" aria-label="Ocultar/mostrar dashboard">▾</button>
+            </div>
+
+            <div id="dashboard-grid">
+                <div class="dash-card">
+                    <span class="dash-label">Ruas visíveis</span>
+                    <span class="dash-valor" id="db-ruas">0</span>
+                </div>
+                <div class="dash-card">
+                    <span class="dash-label">Posições</span>
+                    <span class="dash-valor" id="db-total">0</span>
+                </div>
+                <div class="dash-card dash-ocupada">
+                    <span class="dash-label">Ocupadas</span>
+                    <span class="dash-valor" id="db-ocupadas">0</span>
+                </div>
+                <div class="dash-card dash-vazia">
+                    <span class="dash-label">Vazias</span>
+                    <span class="dash-valor" id="db-vazias">0</span>
+                </div>
+                <div class="dash-card">
+                    <span class="dash-label">Itens</span>
+                    <span class="dash-valor" id="db-itens">0</span>
+                </div>
+                <div class="dash-card">
+                    <span class="dash-label">Zonas</span>
+                    <span class="dash-valor" id="db-zonas">0</span>
+                </div>
+                <div class="dash-card">
+                    <span class="dash-label">Níveis</span>
+                    <span class="dash-valor" id="db-niveis">0</span>
+                </div>
+                <div class="dash-card">
+                    <span class="dash-label">Locais</span>
+                    <span class="dash-valor" id="db-locais">0</span>
+                </div>
+                <div class="dash-card dash-destaque">
+                    <span class="dash-label">Ocupação</span>
+                    <span class="dash-valor" id="db-ocupacao">0%</span>
+                </div>
+                <div class="dash-card">
+                    <span class="dash-label">Ruas habilitadas</span>
+                    <span class="dash-valor" id="db-habilitadas">0</span>
+                </div>
+                <div class="dash-card">
+                    <span class="dash-label">Ruas não habilitadas</span>
+                    <span class="dash-valor" id="db-nao-habilitadas">0</span>
+                </div>
+            </div>
         </div>
     </main>
 
