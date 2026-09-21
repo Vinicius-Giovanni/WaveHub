@@ -19,6 +19,6 @@ export const ZOOM = {
 // CORES POR STATUS
 
 export const CORES = {
-    ocupada: 0xff9800,
-    vazia: 0x9e9e9e
+    ocupada: 0x1565c0,
+    vazia: 0xcfd3d6
 }

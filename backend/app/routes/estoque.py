@@ -1,6 +1,6 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Response
 from fastapi.responses import HTMLResponse
-import time
+
 import json
 
 from backend.settings.paths import ESTOQUE_3D_JSON, LAYOUT_ESTOQUE_3D
@@ -11,9 +11,11 @@ router = APIRouter(
 )
 
 @router.get("/api/layout")
-async def get_layout():
+async def get_layout(response: Response):
+    response.headers['Cache-Control'] = "public, max-age=604800"
     with open(LAYOUT_ESTOQUE_3D, 'r', encoding='utf-8') as file:
         return json.load(file)
+    
 
 @router.get("/api/estoque")
 async def get_estoque():

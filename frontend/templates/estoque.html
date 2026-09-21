@@ -21,12 +21,67 @@
 <body>
 
     <main>
+        <button id="btn-recarregar-layout" class="btn-recarregar">
+            Recarregar Layout
+        </button>
         <div id="estoque-3d">
+            <!-- estoque.html, dentro de #estoque-3d -->
+            <div id="crosshair"></div>
             <div id="estoque-loading" class="loading-overlay">
                 <div class="loading-spinner"></div>
                 <p>Carregando estoque 3D...</p>
             </div>
+            
+        <div id="painel-posicao" class="painel-posicao oculto">
+            <button id="fechar-painel" class="fechar-painel">&times;</button>
+            <h3 id="painel-id">-</h3>
+            <p><strong>Status:</strong> <span id="painel-status">-</span></p>
+            <p><strong>Zona:</strong> <span id="painel-zona">-</span></p>
+            <p><strong>Itens:</strong></p>
+            <ul id="painel-itens"></ul>
         </div>
+        </div>
+        <button id="btn-toggle-dashboard" class="btn-toggle-dashboard">📊</button>
+
+        <aside id="dashboard" class="dashboard oculto">
+            <h2>Dashboard Estoque</h2>
+
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <span class="kpi-valor" id="kpi-total">-</span>
+                    <span class="kpi-label">Total de posições</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-valor" id="kpi-ocupadas">-</span>
+                    <span class="kpi-label">Ocupadas</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-valor" id="kpi-vazias">-</span>
+                    <span class="kpi-label">Vazias</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-valor" id="kpi-ocupacao">-</span>
+                    <span class="kpi-label">% Ocupação</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-valor" id="kpi-itens">-</span>
+                    <span class="kpi-label">Itens distintos</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-valor" id="kpi-zonas">-</span>
+                    <span class="kpi-label">Zonas ativas</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-valor" id="kpi-desabilitadas">-</span>
+                    <span class="kpi-label">Desabilitadas</span>
+                </div>
+            </div>
+
+            <div class="kpi-secao">
+                <h3>Por Zona</h3>
+                <ul id="kpi-lista-zonas"></ul>
+            </div>
+</aside>
     </main>
 
     <script type="module" src="/static/js/Main.js"></script>

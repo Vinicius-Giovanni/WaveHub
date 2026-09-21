@@ -3,21 +3,22 @@ import * as THREE from "three";
 export function criarCena() {
     
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0d1626); // COR BACKGROUND
-    // scene.fog = new THREE.Fog(0x0d1626, 50, 500); // FOG
+    scene.background = new THREE.Color(0xe8eaed); // COR BACKGROUND
+    //scene.fog = new THREE.Fog(0xe8eaed, 80, 400); // FOG
 
     const luzAmbiente = new THREE.AmbientLight(0xffffff, 0.6);
     scene.add(luzAmbiente);
 
     const luzDirecional = new THREE.DirectionalLight(0xffffff, 0.8);
     luzDirecional.position.set(0, 0, 20);
-    //luzDirecional.castShadow = true;
+    luzDirecional.castShadow = true;
     scene.add(luzDirecional);
 
-    const grid = new THREE.GridHelper(10, 500, 0x37c5e8, 0x37c5e8);
+    const grid = new THREE.GridHelper(2000, 1000, 0xb0b4b8, 0xd0d3d6);
     grid.material.transparent = true;
-    grid.material.opacity = 0.3; // ajuste o valor 0 a 1
-    //  scene.add(grid);
+    grid.material.opacity = 0.5; // ajuste o valor 0 a 1
+    grid.position.set(800, 0, 0, 0);
+    scene.add(grid);
 
     return scene;
 }

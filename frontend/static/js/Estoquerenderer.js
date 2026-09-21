@@ -1,20 +1,22 @@
-import { criarCuboDaPosicao } from "./Cubofactory.js";
-
-/**
- * Adiciona um cubo por posição na cena e devolve a lista de Mesh
- * criados, quem chamar isso pode guardar esssa lista pra usar depois
- * em seleção, busca, etc.
- */
+// Estoquerenderer.js
+import { criarInstancedMesh } from "./Cubofactory.js";
 
 export function renderizarPosicoes(scene, posicoes) {
-
-    const cubos = [];
+    const porStatus = { ocupada: [], vazia: [] };
 
     posicoes.forEach(posicao => {
-        const cubo = criarCuboDaPosicao(posicao);
-        scene.add(cubo);
-        cubos.push(cubo);
+        const grupo = posicao.status === "ocupada" ? "ocupada" : "vazia";
+        porStatus[grupo].push(posicao);
     });
 
-    return cubos;
+    const meshes = [];
+
+    Object.entries(porStatus).forEach(([status, lista]) => {
+        if (lista.length === 0) return;
+        const instancedMesh = criarInstancedMesh(lista, status);
+        scene.add(instancedMesh);
+        meshes.push(instancedMesh);
+    });
+
+    return meshes;
 }

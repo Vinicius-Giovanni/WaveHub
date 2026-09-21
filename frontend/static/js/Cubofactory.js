@@ -1,45 +1,57 @@
+// Cubofactory.js
 import * as THREE from "three";
-import { CORES } from "./Config.js"
+import { CORES } from "./Config.js";
 
-/**
- * Materiais compartilhados entre todos os cubos do mesmo status
- * (evita criar um material novo por posição - mais leve em escala).
- */
+const geometriaBase = new THREE.BoxGeometry(1, 1, 1);
 
 const materiais = {
-    ocupada: new THREE.MeshLambertMaterial({ color: CORES.ocupada }),
-    vazia: new THREE.MeshLambertMaterial({ 
+    ocupada: new THREE.MeshLambertMaterial({
+        color: CORES.ocupada,
+        transparent: true,
+        opacity: 0.9
+    }),
+    vazia: new THREE.MeshLambertMaterial({
         color: CORES.vazia,
         transparent: true,
-        opacity: 0.7
+        opacity: 0.25
     })
 };
 
-/**
- * Cria o Mesh de uma posição a partir dos dados já unidos
- * (layout + estoque). "y" é tratado como a BASE do item
- * (chão = 0); o cubo é desenhado crescendo a partir dali.
- */
-
-export function criarCuboDaPosicao(posicao) {
-    
+function criarMatriz(posicao) {
     const largura = posicao.largura || 1;
     const altura = posicao.altura || 1;
     const profundidade = posicao.profundidade || 1;
 
-    const geometry = new THREE.BoxGeometry(largura, altura, profundidade);
-    const material = posicao.status === "ocupada" ? materiais.ocupada : materiais.vazia;
+    return new THREE.Matrix4().compose(
+        new THREE.Vector3(posicao.x, posicao.y + altura / 2, posicao.z),
+        new THREE.Quaternion(),
+        new THREE.Vector3(largura, altura, profundidade)
+    );
+}
 
-    const cubo = new THREE.Mesh(geometry, material);
+export function criarInstancedMesh(posicoesDoStatus, status) {
+    const material = materiais[status] || materiais.vazia;
+    const instancedMesh = new THREE.InstancedMesh(geometriaBase, material, posicoesDoStatus.length);
+    instancedMesh.castShadow = true;
 
-    cubo.position.set(
-        posicao.x,
-        posicao.y + altura / 2,
-        posicao.z
+    // necessário pra habilitar setColorAt/getColorAt
+    instancedMesh.instanceColor = new THREE.InstancedBufferAttribute(
+        new Float32Array(posicoesDoStatus.length * 3).fill(1), 3
     );
 
-    cubo.userData.posicao = posicao;
-    //cubo.castShadow = true;
+    const corBase = new THREE.Color(materiais[status].color.getHex());
+    const mapaIndices = new Map();
 
-    return cubo;
+    posicoesDoStatus.forEach((posicao, indice) => {
+        instancedMesh.setMatrixAt(indice, criarMatriz(posicao));
+        instancedMesh.setColorAt(indice, corBase);
+        mapaIndices.set(indice, posicao);
+    });
+
+    instancedMesh.instanceMatrix.needsUpdate = true;
+    instancedMesh.instanceColor.needsUpdate = true;
+    instancedMesh.userData.mapaIndices = mapaIndices;
+    instancedMesh.userData.status = status;
+
+    return instancedMesh;
 }
