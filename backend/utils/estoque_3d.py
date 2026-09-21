@@ -51,9 +51,6 @@ def prepare_estoque_3d(df: pd.DataFrame) -> list[dict]:
 
         posicoes.append({
             "id": f"{rua}-{local}-{nivel}",
-            "rua": str(rua),
-            "local": str(local),
-            "nivel": str(nivel),
             "status": status,
             "zona": str(primeira_linha["zona"]),
             "tipo_de_eqp": str(primeira_linha["tipo_de_eqp"]),

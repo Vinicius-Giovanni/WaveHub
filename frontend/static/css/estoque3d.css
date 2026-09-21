@@ -1,326 +1,36 @@
 #estoque-3d {
+    position: relative;
     width: 100%;
     height: 100vh;
-    background: #11151c;
 }
 
-/* ==============================
-   UI sobre a cena 3D
-   ============================== */
-
-#crosshair {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 6px;
-    height: 6px;
-    margin: -3px 0 0 -3px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
-    pointer-events: none;
-    z-index: 20;
-}
-
-#busca-container,
-#filtros-container,
-#legenda-container,
-#painel-detalhes,
-#dashboard-container {
-    position: fixed;
-    pointer-events: auto;
-    font-family: sans-serif;
-    font-size: 14px;
-    color: #e8ebf0;
-    z-index: 30;
-    background: rgba(24, 28, 36, 0.82);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
-}
-
-/* Busca */
-
-#busca-container {
-    top: 16px;
-    left: 16px;
-    width: 320px;
-    border-radius: 10px;
-    padding: 4px;
-}
-
-#busca-input {
-    width: 100%;
-    padding: 8px 10px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 6px;
-    box-sizing: border-box;
-    background: rgba(255, 255, 255, 0.06);
-    color: #e8ebf0;
-}
-
-#busca-input::placeholder {
-    color: rgba(232, 235, 240, 0.45);
-}
-
-#busca-resultados {
-    list-style: none;
-    margin: 4px 0 0;
-    padding: 0;
-    max-height: 260px;
-    overflow-y: auto;
-    border-radius: 6px;
-}
-
-#busca-resultados li {
-    padding: 8px 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    cursor: pointer;
-}
-
-#busca-resultados li:hover {
-    background: rgba(47, 143, 255, 0.15);
-}
-
-#busca-resultados li:last-child {
-    border-bottom: none;
-}
-
-/* Filtros */
-
-#filtros-container {
-    top: 16px;
-    right: 16px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    align-items: center;
-    max-width: 420px;
-    border-radius: 10px;
-    padding: 8px;
-    justify-content: flex-end;
-}
-
-.filtro-btn {
-    padding: 6px 12px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.05);
-    color: #e8ebf0;
-    cursor: pointer;
-    transition: background 0.15s ease, border-color 0.15s ease;
-}
-
-.filtro-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.filtro-btn.ativo {
-    background: #2f8fff;
-    color: #fff;
-    border-color: #2f8fff;
-}
-
-#filtros-container select {
-    padding: 6px 8px;
-    border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(255, 255, 255, 0.05);
-    color: #e8ebf0;
-    max-width: 160px;
-}
-
-#filtros-container select option {
-    color: #111;
-}
-
-/* Legenda */
-
-#legenda-container {
-    bottom: 16px;
-    left: 16px;
-    padding: 10px 14px;
-    border-radius: 8px;
-}
-
-.legenda-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 4px;
-}
-
-.legenda-item:last-child {
-    margin-bottom: 0;
-}
-
-.legenda-cor {
-    width: 12px;
-    height: 12px;
-    border-radius: 3px;
-    display: inline-block;
-}
-
-.legenda-ocupada {
-    background: #2f8fff;
-}
-
-.legenda-vazia {
-    background: #4a5568;
-}
-
-.legenda-selecionada {
-    background: #ffcc00;
-}
-
-/* Painel de detalhes */
-
-#painel-detalhes {
-    top: 70px;
-    right: 16px;
-    width: 320px;
-    max-height: calc(100vh - 86px);
-    overflow-y: auto;
-    border-radius: 10px;
-    padding: 16px;
-}
-
-#painel-detalhes.oculto {
-    display: none;
-}
-
-#painel-fechar {
+.loading-overlay {
     position: absolute;
-    top: 8px;
-    right: 10px;
-    border: none;
-    background: none;
-    font-size: 20px;
-    line-height: 1;
-    cursor: pointer;
-    color: rgba(232, 235, 240, 0.7);
-}
-
-.painel-item {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding-top: 8px;
-    margin-top: 8px;
-}
-
-/* ==============================
-   DASHBOARD FLUTUANTE
-   ============================== */
-
-#dashboard-container {
-    left: 50%;
-    bottom: 16px;
-    transform: translateX(-50%);
-    width: min(880px, calc(100% - 32px));
-    border-radius: 12px;
-    padding: 0;
-    overflow: hidden;
-}
-
-#dashboard-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 16px;
-    cursor: pointer;
-    user-select: none;
-}
-
-#dashboard-titulo {
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 0.02em;
-    color: #e8ebf0;
-    opacity: 0.9;
-}
-
-#dashboard-toggle {
-    border: none;
-    background: rgba(255, 255, 255, 0.08);
-    color: #e8ebf0;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 12px;
-    line-height: 1;
-    transition: transform 0.25s ease, background 0.15s ease;
-}
-
-#dashboard-toggle:hover {
-    background: rgba(255, 255, 255, 0.16);
-}
-
-#dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 8px;
-    padding: 0 16px 14px;
-    max-height: 140px;
-    opacity: 1;
-    transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.3s ease;
-}
-
-.dash-card {
+    inset: 0;
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 8px;
-    padding: 8px 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #f5f5f7;
+    z-index: 20;
+    transition: opacity 0.4s ease;
 }
 
-.dash-label {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: rgba(232, 235, 240, 0.55);
-}
-
-.dash-valor {
-    font-size: 17px;
-    font-weight: 700;
-    color: #e8ebf0;
-}
-
-.dash-ocupada .dash-valor {
-    color: #59a7ff;
-}
-
-.dash-vazia .dash-valor {
-    color: #9aa4b2;
-}
-
-.dash-destaque {
-    background: rgba(47, 143, 255, 0.12);
-    border-color: rgba(47, 143, 255, 0.3);
-}
-
-.dash-destaque .dash-valor {
-    color: #59a7ff;
-}
-
-/* Estado fechado: some só o grid, o header vira a "aba" */
-
-#dashboard-container.dashboard-fechado #dashboard-grid {
-    max-height: 0;
+.loading-overlay.oculto {
     opacity: 0;
-    padding-top: 0;
-    padding-bottom: 0;
+    pointer-events: none;
 }
 
-#dashboard-container.dashboard-fechado #dashboard-toggle {
-    transform: rotate(180deg);
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #ddd;
+    border-top-color: #2196f3;
+    border-radius: 50%;
+    animation: girar 0.8s linear infinite;
 }
 
-@media (max-width: 720px) {
-    #dashboard-grid {
-        grid-template-columns: repeat(3, 1fr);
-        max-height: 280px;
-    }
+@keyframes girar {
+    to { transform: rotate(360deg); }
 }

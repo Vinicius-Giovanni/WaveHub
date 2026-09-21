@@ -20,6 +20,7 @@ OLPN_TEMP = TEMP_WAVEHUB / "3.11 - Status Wave + oLPN.csv"
 CANCEL_TEMP = TEMP_WAVEHUB / "6.10 - Pedidos Cancelados.csv"
 POSICOES_OCUP_VAZI_TEMP = TEMP_WAVEHUB / "2.04 - Posições ocupadas e vazias.csv"
 ESTOQUE_3D_JSON = TEMP_WAVEHUB / "estoque_3d.json"
+LAYOUT_ESTOQUE_3D = "data/json/layout_cd.json"
 
 # slq
 SQL_DIR = Path("backend/robot/jobs/pipe/sql")

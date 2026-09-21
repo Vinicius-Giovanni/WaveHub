@@ -2,8 +2,8 @@ FRAME = '//*[@id="rsIFrameManager_1"]'
 
 ELEMENTS_LOGIN = {
     'window_validation_login': '//*[@id="content"]/div[2]/div[1]/div[1]',
-    'namespace_dropdown_button': '#downshift-0-toggle-button',
-    'namespace_azuread': '#downshift-0-item-0',
+    'namespace_dropdown_button': 'xpath=//*[@id="downshift-0-toggle-button"]',
+    'namespace_azuread': '#downshift-0-item-1',
     'email': '#i0116',
     'password': '#i0118',
     'submit_button': '#idSIButton9',
@@ -84,5 +84,5 @@ ELEMENTS_CANCEL = {
 
 ELEMENTS_POSICOES_OCUPADAS_E_VAZIAS = {
     'element_filial_id': '#dv31_ValueComboBox',
-    'element_confirm': '#dv115'
+    'element_confirm': '#dv116'
 }
