@@ -63,7 +63,7 @@
     gap: 12px;
 }
 
-.profile-name {
+.profile-username {
     color: var(--color-primary);
     font-size: 14px;
     font-weight: 600;
@@ -78,7 +78,7 @@
 
 .profile-logout {
     margin-top: 14px;
-    padding: 0 5;
+    padding: 0 5px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -113,4 +113,62 @@
 
 .sidebar-sectors::-webkit-scrollbar-thumb:hover {
     background: var(--color-tertiary);
+}
+
+/* Menu responsivo */
+
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 1100;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    justify-content: center;
+}
+
+
+.sidebar-toggle .material-symbols-outlined {
+    font-size: 24px;
+    color: var(--color-primary);
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 999;
+}
+
+@media (max-width: 1024px) {
+
+    /* Mostra o botão */
+    .sidebar-toggle {
+        display: flex;
+    }
+
+    /* Sidebar fechada */
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+        width: 290px;
+    }
+
+    /* Sidebar aberta */
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    /* Overlay quando aberta */
+    .sidebar-overlay.active {
+        display: block;
+    }
 }
