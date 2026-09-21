@@ -272,5 +272,225 @@ body {
     gap: 16px
 }
 
-/* Responsividade */
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
 
+
+/* -----------------------------------------
+   TABLETS E TELAS MENORES
+   ----------------------------------------- */
+
+@media (max-width: 1024px) {
+
+    /*
+     * A sidebar deixa de ocupar espaço no Grid.
+     * Como ela é position: fixed, ela ficará
+     * por cima do conteúdo quando aberta.
+     */
+    .home-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .home-content {
+        grid-column: 1;
+        min-width: 0;
+        width: 100%;
+        padding: 0 24px 50px;
+    }
+
+
+    /* Cards de resumo: 2 por linha */
+    .summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+
+    /* Filtros: 2 por linha */
+    .filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+
+    /* Cards dos setores: 2 por linha */
+    .sector-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+
+    .home-container {
+        max-width: none;
+        width: 100%;
+    }
+}
+
+
+/* -----------------------------------------
+   CELULAR
+   ----------------------------------------- */
+
+@media (max-width: 768px) {
+
+    .home-content {
+        padding: 0 16px 40px;
+    }
+
+
+    /* Header */
+    .home-header {
+        margin: 0 -16px;
+        padding: 0 16px;
+    }
+
+
+    .home-header-title {
+        font-size: 13px;
+    }
+
+
+    .home-user {
+        display: none;
+    }
+
+
+    /* Conteúdo principal */
+    .home-container {
+        margin-top: 24px;
+    }
+
+
+    .home-intro h1 {
+        font-size: 26px;
+    }
+
+
+    .home-intro p {
+        font-size: 14px;
+    }
+
+
+    /* Cards de resumo: 1 por linha */
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .summary-card {
+        min-height: 130px;
+    }
+
+
+    /* Filtros: 1 por linha */
+    .filters {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 16px;
+    }
+
+
+    /* Cabeçalho da operação */
+    .operation-header {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+
+    .operation-title {
+        min-width: 0;
+    }
+
+
+    .operation-title h2 {
+        font-size: 15px;
+    }
+
+
+    .operation-title p {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+
+    .operation-count {
+        white-space: nowrap;
+    }
+
+
+    /* Cards dos setores */
+    .sector-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* -----------------------------------------
+   CELULARES PEQUENOS
+   ----------------------------------------- */
+
+@media (max-width: 480px) {
+
+    .home-content {
+        padding: 0 14px 30px;
+    }
+
+
+    .home-header {
+        margin: 0 -14px;
+        padding: 0 14px;
+    }
+
+
+    .home-header-title {
+        gap: 6px;
+        font-size: 12px;
+    }
+
+
+    .home-header-title .material-symbols-outlined {
+        font-size: 17px;
+    }
+
+
+    .home-intro h1 {
+        font-size: 24px;
+    }
+
+
+    .home-intro p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+
+    .summary-card {
+        padding: 16px;
+        border-radius: 16px;
+    }
+
+
+    .summary-card-value {
+        font-size: 28px;
+    }
+
+
+    .summary-card-icon {
+        top: 16px;
+        right: 16px;
+    }
+
+
+    .filters {
+        padding: 14px;
+        border-radius: 16px;
+    }
+
+
+    .operation-header {
+        flex-direction: column;
+    }
+
+
+    .operation-count {
+        align-self: flex-start;
+    }
+}
