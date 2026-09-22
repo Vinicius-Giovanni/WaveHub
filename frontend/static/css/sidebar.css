@@ -10,6 +10,11 @@
     border-right: 1px solid var(--border-color);
 }
 
+
+/* =========================================
+   NAVEGAÇÃO
+   ========================================= */
+
 .sidebar-nav {
     display: flex;
     flex-direction: column;
@@ -41,6 +46,11 @@
     font-size: 19px;
 }
 
+
+/* =========================================
+   TÍTULO DOS SETORES
+   ========================================= */
+
 .sidebar-section-title {
     margin: 28px 14px 8px;
     color: var(--color-tertiary);
@@ -48,6 +58,40 @@
     font-weight: 600;
     text-transform: uppercase;
 }
+
+
+/* =========================================
+   SETORES
+   ========================================= */
+
+.sidebar-sectors {
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 4px;
+    margin-bottom: 20px;
+}
+
+.sidebar-sectors::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar-sectors::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar-sectors::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+
+.sidebar-sectors::-webkit-scrollbar-thumb:hover {
+    background: var(--color-tertiary);
+}
+
+
+/* =========================================
+   PERFIL
+   ========================================= */
 
 .sidebar-profile {
     margin-top: auto;
@@ -69,7 +113,6 @@
     font-weight: 600;
 }
 
-
 .profile-email {
     margin-top: 2px;
     color: var(--color-tertiary);
@@ -87,73 +130,13 @@
 }
 
 .profile-logout:hover {
-    color: var(--color-secondary)
-}
-
-.sidebar-sectors {
-    max-height: 200px;
-    overflow-y: auto;
-    padding-right: 4px;
-    margin-bottom: 20px;
-}
-
-/* Barra de rolagem */
-.sidebar-sectors::-webkit-scrollbar {
-    width: 5px;
-}
-
-.sidebar-sectors::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.sidebar-sectors::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 10px;
-}
-
-.sidebar-sectors::-webkit-scrollbar-thumb:hover {
-    background: var(--color-tertiary);
-}
-
-/* Menu responsivo */
-
-.sidebar-toggle {
-    display: none;
-    width: 40px;
-    height: 40px;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    color: var(--color-primary);
-    background: transparent;
-    border: 0;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 1101;
-    transition: 
-        color 0.2s ease,
-        background-color 0.2s ease
-    ;
-}
-
-
-.sidebar-toggle .material-symbols-outlined {
-    font-size: 24px;
-    color: inherit;
-}
-
-.sidebar-toggle:hover {
     color: var(--color-secondary);
-    background: var(--bg-icon);
 }
 
-.sidebar-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.45);
-    z-index: 999;
-}
+
+/* =========================================
+   HEADER DO SIDEBAR
+   ========================================= */
 
 .sidebar-header {
     min-height: 40px;
@@ -162,21 +145,72 @@
     justify-content: space-between;
 }
 
-.sidebar-close {
+
+/* =========================================
+   BOTÃO HAMBÚRGUER
+   ========================================= */
+
+.sidebar-toggle {
     display: none;
     width: 40px;
     height: 40px;
+
     align-items: center;
     justify-content: center;
+
     padding: 0;
+
     color: var(--color-primary);
     background: transparent;
+
     border: 0;
     border-radius: 50%;
+
     cursor: pointer;
+
+    z-index: 10;
+
     transition:
-    color 0.2s ease,
-    background-color 0.2s ease;
+        color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.sidebar-toggle:hover {
+    color: var(--color-secondary);
+    background: var(--bg-icon);
+}
+
+.sidebar-toggle .material-symbols-outlined {
+    font-size: 24px;
+}
+
+
+/* =========================================
+   BOTÃO FECHAR
+   ========================================= */
+
+.sidebar-close {
+    display: none;
+
+    width: 40px;
+    height: 40px;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    color: var(--color-primary);
+    background: transparent;
+
+    border: 0;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease;
 }
 
 .sidebar-close:hover {
@@ -188,16 +222,28 @@
     font-size: 24px;
 }
 
+
+/* =========================================
+   OVERLAY
+   ========================================= */
+
 .sidebar-overlay {
     display: none;
+
     position: fixed;
     inset: 0;
+
     background: rgba(0, 0, 0, 0.45);
+
     z-index: 999;
 }
 
-@media (max-width: 1024px) {
 
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+
+@media (max-width: 1024px) {
 
     /* Sidebar fechada */
     .sidebar {
@@ -207,16 +253,32 @@
         width: 290px;
     }
 
+
     /* Sidebar aberta */
     .sidebar.open {
         transform: translateX(0);
     }
 
+
+    /* Hambúrguer */
+    .sidebar-toggle {
+        display: flex;
+
+        position: absolute;
+        top: 50%;
+        left: 14px;
+
+        transform: translateY(-50%);
+    }
+
+
+    /* Botão X */
     .sidebar-close {
         display: flex;
     }
 
-    /* Overlay quando aberta */
+
+    /* Overlay */
     .sidebar-overlay.active {
         display: block;
     }

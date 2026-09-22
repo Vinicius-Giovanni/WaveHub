@@ -18,5 +18,5 @@ sidebarClose.addEventListener("click", () => {
 })
 
 sidebarOverlay.addEventListener("click", () => {
-    closeSidebar
+    closeSidebar()
 })
