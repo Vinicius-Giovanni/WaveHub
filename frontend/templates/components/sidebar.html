@@ -1,10 +1,15 @@
-<button class="sidebar-toggle" id="sidebarToggle" aria-label="Abrir menu">
-    <span class="material-symbols-outlined">menu</span>
-</button>
-
-
 <aside class="sidebar" id="sidebar">
-    {% include 'components/brand.html' %}
+
+    <div class="sidebar-header">
+        {% include 'components/brand.html' %}
+
+        <button class="sidebar-close" id="sidebarClose" aria-label="Fechar menu">
+            <span class="material-symbols-outlined">
+                close
+            </span>
+        </button>
+    </div>
+    
 
     <nav class="sidebar-nav">
         <a href="#" class="active">
@@ -117,7 +122,3 @@
         </a>
     </div>
 </aside>
-
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-<script src="{{ url_for('static', path='js/sidebar.js') }}"></script>

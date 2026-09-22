@@ -23,6 +23,11 @@
 
         <section class="home-content">
             <header class="home-header">
+                <button class="sidebar-toggle" id="sidebarToggle" aria-label="Abrir menu" >
+                    <span class="material-symbols-outlined">
+                        menu
+                    </span>
+                </button>
                 <div class="home-header-title">
 
                     <span class="material-symbols-outlined">
@@ -343,5 +348,8 @@
             </div>
         </section>
     </div>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <script src="{{ url_for('static', path='js/sidebar.js') }}"></script>
 </body>
 </html>

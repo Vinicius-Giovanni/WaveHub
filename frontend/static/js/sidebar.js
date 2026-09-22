@@ -1,28 +1,22 @@
 const sidebar = document.getElementById("sidebar")
 const sidebarToggle = document.getElementById("sidebarToggle")
+const sidebarClose = document.getElementById("sidebarClose")
 const sidebarOverlay = document.getElementById("sidebarOverlay")
 
-const icon = sidebarToggle.querySelector(".material-symbols-outlined")
-
 sidebarToggle.addEventListener("click", () => {
-    sidebar.classList.toggle("open")
-    sidebarOverlay.classList.toggle("active")
+    sidebar.classList.add("open")
+    sidebarOverlay.classList.add("active")
+})
 
-    const isOpen = sidebar.classList.contains("open")
+function closeSidebar() {
+    sidebar.classList.remove("open")
+    sidebarOverlay.classList.remove("active")
+}
 
-    if (isOpen) {
-        icon.textContent = "close"
-        sidebarToggle.setAttribute("aria-label", "Fechar menu")
-    } else {
-        icon.textContent = "menu"
-        sidebarToggle.setAttribute("aria-label", "Abrir menu");
-    }
+sidebarClose.addEventListener("click", () => {
+    closeSidebar()
 })
 
 sidebarOverlay.addEventListener("click", () => {
-    sidebar.classList.remove("open")
-    sidebarOverlay.classList.remove("active")
-
-    icon.textContent = "menu"
-    sidebarToggle.setAttribute("aria-label", "Abrir menu")
+    closeSidebar
 })
