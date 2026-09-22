@@ -69,7 +69,14 @@ export class ControlesPrimeiraPessoa {
 
         container.appendChild(overlay);
 
-        overlay.addEventListener("click", () => this.controls.lock());
+        overlay.addEventListener("click", () => {
+            const resultado = this.controls.lock();
+            if (resultado && typeof resultado.catch === "function") {
+                resultado.catch(() => {
+                    // Cooldown do navegador após unlock recente. Ignora silenciosamente.
+                });
+            }
+        });
 
         this.controls.addEventListener("lock", () => {
             overlay.style.display = "none";

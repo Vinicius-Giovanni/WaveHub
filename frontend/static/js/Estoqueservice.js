@@ -11,10 +11,16 @@ async function buscarJSON(url) {
 
 async function buscarLayout() {
     const cache = await obterLayoutCache();
-    if (cache) return cache;
+    if (cache && Array.isArray(cache.posicoes) && cache.posicoes.length > 0) {
+        return cache;
+    }
 
     const layout = await buscarJSON(API_LAYOUT_URL);
-    await salvarLayoutCache(layout);
+    
+    if (layout && Array.isArray(layout.posicoes) && layout.posicoes.length > 0) {
+        await salvarLayoutCache(layout);
+    }
+    
     return layout;
 }
 

@@ -74,9 +74,12 @@ function animar() {
 
 // CARREGAMENTO DOS DADOS
 
+// dentro de iniciar(), antes de renderizarPosicoes
 async function iniciar() {
     try {
         const posicoes = await carregarPosicoes();
+        console.log("TOTAL:", posicoes.length);
+        console.log("PRIMEIRA:", posicoes[0]);
         cubosAtuais = renderizarPosicoes(scene, posicoes);
         atualizarDashboard(posicoes);
     } catch (erro) {
@@ -193,8 +196,6 @@ renderer.domElement.addEventListener("click", aoClicar);
 document.getElementById("fechar-painel")?.addEventListener("click", () => {
     document.getElementById("painel-posicao").classList.add("oculto");
 });
-
-renderer.domElement.addEventListener("click", aoClicar);
 
 // BOTÃO DE RECARREGAR LAYOUT
 

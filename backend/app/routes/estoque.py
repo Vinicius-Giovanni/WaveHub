@@ -11,11 +11,9 @@ router = APIRouter(
 )
 
 @router.get("/api/layout")
-async def get_layout(response: Response):
-    response.headers['Cache-Control'] = "public, max-age=604800"
+async def get_layout():
     with open(LAYOUT_ESTOQUE_3D, 'r', encoding='utf-8') as file:
         return json.load(file)
-    
 
 @router.get("/api/estoque")
 async def get_estoque():
