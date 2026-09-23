@@ -159,14 +159,10 @@
                         <div class="filter-control">
 
                             <input
-                                type="text"
+                                type="date"
                                 id="data"
                                 value="14/09/2026"
                             >
-
-                            <span class="material-symbols-outlined">
-                                calendar_month
-                            </span>
                         </div>
                     </div>
 
@@ -194,6 +190,10 @@
 
                                 <option>
                                     3º Turno
+                                </option>
+
+                                <option>
+                                    ADM
                                 </option>
 
                             </select>
@@ -271,6 +271,79 @@
 
                     <div class="sector-cards">
                         <!-- inserir componestes card -->
+                        <article class="sector-card">
+                            <div class="sector-card-header">
+                                <div class="sector-card-icon">
+                                    <span class="material-symbols-outlined">
+                                        {{ icon }}
+                                    </span>
+                                </div>
+                                <div>
+                                    <h3>
+                                        <!-- setor -->
+                                        <!-- {{ title }} -->
+                                        CD 1200 Outbound
+                                    </h3>
+                                    <p>
+                                        Inbound · INB-1200
+                                        <!-- tipode expedição e setor -->
+                                        <!-- {{ type }} · {{ code }} -->
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="sector-card-metrics">
+                                <div>
+                                    <span>
+                                        Demanda
+                                    </span>
+
+                                    <strong>
+                                        <!-- {{ demand }} -->
+                                        21.480
+                                    </strong>
+                                </div>
+
+                                <div>
+                                    <span>
+                                        Pessoas
+                                    </span>
+
+                                    <strong>
+                                        <!-- {{ people }} -->
+                                        98
+                                    </strong>
+                                </div>
+
+                                <div>
+                                    <span>
+                                        Finalizado
+                                    </span>
+
+                                    <strong>
+                                        <!-- {{ completed }}% -->
+                                        71%
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="sector-progress">
+
+                                <!-- <span style="width: {{ progress }}%;"></span> -->
+
+                            </div>
+
+                            <a href="#" class="sector-card-button">
+                                <span>
+                                    Ver detalhes
+                                </span>
+
+                                <span class="material-symbols-outlined">
+                                    arrow_forward
+                                </span>
+                            </a>
+
+                        </article>
+
                         <article class="sector-card">
                             <div class="sector-card-header">
                                 <div class="sector-card-icon">

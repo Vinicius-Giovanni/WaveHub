@@ -1,7 +1,9 @@
 /* Card */
 .sector-card {
-    width: 280px;
+    width: 100%;
+    min-width: 0;
     min-height: 260px;
+    box-sizing: border-box;
     padding: 20px;
     display: flex;
     flex-direction: column;
