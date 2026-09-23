@@ -188,7 +188,7 @@ body {
     padding: 0 14px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 10px;  
     color: var(--color-primary);
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -202,15 +202,23 @@ body {
     height: 100%;
     border: 0;
     outline: 0;
-    background: transparent;
+    background: var(--bg-card);
     color: var(--color-primary);
     font: inherit;
 }
 
+.filter-control input[type="date"] {
+    cursor: pointer;
+}
 
-.filter-control .material-symbols-outlined {
-    color: var(--color-tertiary);
-    font-size: 18px;
+.filter-control input[type="date"]::-webkit-calendar-picker-indicator {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    opacity: 1;
+    filter: invert(100%);
 }
 
 .filter-control input::placeholder{
@@ -269,13 +277,13 @@ body {
 .sector-cards {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px
+    gap: 16px;
 }
 
 /* Responsividade */
 
 
-@media (max-width: 1024px) {
+@media (min-width: 601px) and (max-width: 1024px) {
 
     .home-layout {
         grid-template-columns: 1fr;
@@ -291,6 +299,11 @@ body {
     .home-container {
         width: 100%;
         max-width: none;
+    }
+
+    .home-header {
+        position: relative;
+        padding-left: 64px;
     }
 
 
@@ -310,71 +323,87 @@ body {
     .sector-cards {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-
-
-    .home-container {
-        max-width: none;
-        width: 100%;
-    }
 }
 
 
-/* -----------------------------------------
-   CELULAR
-   ----------------------------------------- */
+/* Celular */
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
+
+    /* Estrutura */
+
+    .home-layout {
+        grid-template-columns: 1fr;
+    }
 
     .home-content {
+        grid-column: 1;
+        width: 100%;
+        min-width: 0;
         padding: 0 16px 40px;
+    }
+
+    .home-container {
+        width: 100%;
+        max-width: none;
+        margin-top: 24px;
     }
 
 
     /* Header */
+
     .home-header {
+        position: relative;
+        height: 61px;
         margin: 0 -16px;
         padding: 0 16px 0 58px;
     }
 
-
-    .home-header-title {
-        font-size: 13px;
+    .sidebar-toggle {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
     }
 
+    .home-header-title {
+        font-size: 14px;
+    }
 
     .home-user {
         display: none;
     }
 
 
-    /* Conteúdo principal */
-    .home-container {
+    /* Conteúdo */
+
+    .home-intro {
         margin-top: 24px;
     }
-
 
     .home-intro h1 {
         font-size: 26px;
     }
-
 
     .home-intro p {
         font-size: 14px;
     }
 
 
-    /* Cards de resumo: 1 por linha */
+    /* Cards */
+
     .summary-grid {
         grid-template-columns: 1fr;
     }
-
 
     .summary-card {
         min-height: 130px;
     }
 
 
-    /* Filtros: 1 por linha */
+    /* Filtros */
+
     .filters {
         grid-template-columns: 1fr;
         gap: 14px;
@@ -382,28 +411,25 @@ body {
     }
 
 
-    /* Cabeçalho da operação */
+    /* Operação */
+
     .operation-header {
         align-items: flex-start;
         gap: 12px;
     }
 
-
     .operation-title {
         min-width: 0;
     }
-
 
     .operation-title h2 {
         font-size: 15px;
     }
 
-
     .operation-title p {
         font-size: 12px;
         line-height: 1.4;
     }
-
 
     .operation-count {
         white-space: nowrap;
@@ -411,6 +437,7 @@ body {
 
 
     /* Cards dos setores */
+
     .sector-cards {
         grid-template-columns: 1fr;
     }
@@ -427,62 +454,51 @@ body {
         padding: 0 14px 30px;
     }
 
-
     .home-header {
         margin: 0 -14px;
         padding: 0 14px 0 56px;
     }
-
 
     .home-header-title {
         gap: 6px;
         font-size: 12px;
     }
 
-
     .home-header-title .material-symbols-outlined {
         font-size: 17px;
     }
 
-
     .home-intro h1 {
         font-size: 24px;
     }
-
 
     .home-intro p {
         font-size: 13px;
         line-height: 1.5;
     }
 
-
     .summary-card {
         padding: 16px;
         border-radius: 16px;
     }
 
-
     .summary-card-value {
         font-size: 28px;
     }
-
 
     .summary-card-icon {
         top: 16px;
         right: 16px;
     }
 
-
     .filters {
         padding: 14px;
         border-radius: 16px;
     }
 
-
     .operation-header {
         flex-direction: column;
     }
-
 
     .operation-count {
         align-self: flex-start;
