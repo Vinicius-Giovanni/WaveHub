@@ -272,21 +272,10 @@ body {
     gap: 16px
 }
 
-/* =========================================
-   RESPONSIVIDADE
-   ========================================= */
+/* Responsividade */
 
-
-/* -----------------------------------------
-   TABLETS E TELAS MENORES
-   ----------------------------------------- */
 
 @media (max-width: 1024px) {
-
-    .home-header {
-        position: relative;
-        padding-left: 64px;
-    }
 
     .home-layout {
         grid-template-columns: 1fr;
@@ -294,9 +283,14 @@ body {
 
     .home-content {
         grid-column: 1;
-        min-width: 0;
         width: 100%;
+        min-width: 0;
         padding: 0 24px 50px;
+    }
+
+    .home-container {
+        width: 100%;
+        max-width: none;
     }
 
 
