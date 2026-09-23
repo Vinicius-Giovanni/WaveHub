@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
     <link rel="stylesheet" href="/static/css/global.css">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+
     <title>Dashboard</title>
 </head>
+
 <body>
+
     <main class="dashboard-layout">
+
+        <!-- Conteúdo principal -->
         <section class="dashboard-content">
-            {% include 'components/header_pages.html'%}
+
+            {% include 'components/header_pages.html' %}
 
             <div class="dashboard-container">
+
+                <!-- INTRO -->
                 <section class="dashboard-intro">
 
                     <div class="breadcrumb">
@@ -31,12 +41,15 @@
                         Visão executiva da operação: indicadores agregados,
                         evolução por hora, ranking de setores e alertas críticos.
                     </p>
+
                 </section>
 
-                <!-- Indicadores -->
 
+                <!-- INDICADORES -->
                 <section class="dashboard-summary">
+
                     <article class="dashboard-card">
+
                         <div class="dashboard-card-header">
                             <span>Demanda<br>consolidada</span>
 
@@ -45,15 +58,21 @@
                                     monitoring
                                 </span>
                             </div>
-
                         </div>
 
                         <strong class="dashboard-card-value">
                             122.440
                         </strong>
+
+                        <span class="dashboard-card-trend positive">
+                            ↗ +3.4%
+                        </span>
+
                     </article>
 
+
                     <article class="dashboard-card">
+
                         <div class="dashboard-card-header">
                             <span>Pessoas alocadas</span>
 
@@ -67,7 +86,13 @@
                         <strong class="dashboard-card-value">
                             514
                         </strong>
+
+                        <span class="dashboard-card-trend negative">
+                            ↘ -1.2%
+                        </span>
+
                     </article>
+
 
                     <article class="dashboard-card">
 
@@ -84,7 +109,13 @@
                         <strong class="dashboard-card-value">
                             71%
                         </strong>
+
+                        <span class="dashboard-card-trend positive">
+                            ↗ +2.1%
+                        </span>
+
                     </article>
+
 
                     <article class="dashboard-card">
 
@@ -101,13 +132,415 @@
                         <strong class="dashboard-card-value">
                             232 pph
                         </strong>
+
+                        <span class="dashboard-card-trend positive">
+                            ↗ +1.8%
+                        </span>
+
                     </article>
+
                 </section>
 
 
+                <!-- GRÁFICOS -->
+                <section class="dashboard-grid dashboard-grid-main">
+
+                    <!-- HISTÓRICO -->
+                    <article class="dashboard-panel performance-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <h2>Histórico de performance por hora</h2>
+                                <p>
+                                    Demanda, executado e meta ao longo do dia.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="chart-placeholder">
+                            <div class="chart-y-axis">
+                                <span>4000</span>
+                                <span>3000</span>
+                                <span>2000</span>
+                                <span>1000</span>
+                                <span>0</span>
+                            </div>
+
+                            <div class="chart-area">
+
+                                <div class="chart-grid-line"></div>
+                                <div class="chart-grid-line"></div>
+                                <div class="chart-grid-line"></div>
+                                <div class="chart-grid-line"></div>
+                                <div class="chart-grid-line"></div>
+
+                                <div class="chart-message">
+                                    Gráfico
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="chart-legend">
+
+                            <span>
+                                <i class="legend-demand"></i>
+                                demanda
+                            </span>
+
+                            <span>
+                                <i class="legend-executed"></i>
+                                executado
+                            </span>
+
+                            <span>
+                                <i class="legend-target"></i>
+                                meta
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PRODUTIVIDADE -->
+                    <article class="dashboard-panel productivity-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <h2>Produtividade por equipe</h2>
+                                <p>Peças por hora (pph).</p>
+                            </div>
+                        </div>
+
+                        <div class="bar-chart">
+
+                            <div class="bar-item">
+                                <div class="bar" style="height: 90%;"></div>
+                                <span>Turno A</span>
+                            </div>
+
+                            <div class="bar-item">
+                                <div class="bar" style="height: 74%;"></div>
+                                <span>Turno B</span>
+                            </div>
+
+                            <div class="bar-item">
+                                <div class="bar" style="height: 60%;"></div>
+                                <span>Turno C</span>
+                            </div>
+
+                            <div class="bar-item">
+                                <div class="bar" style="height: 48%;"></div>
+                                <span>Apoio</span>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </section>
+
+
+                <!-- RANKING + ALERTAS -->
+                <section class="dashboard-grid dashboard-grid-secondary">
+
+                    <!-- RANKING -->
+                    <article class="dashboard-panel ranking-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <h2>Ranking de setores</h2>
+                                <p>Ordenado por percentual finalizado.</p>
+                            </div>
+                        </div>
+
+                        <div class="ranking-list">
+
+                            <div class="ranking-item">
+                                <span class="ranking-position">1</span>
+                                <span class="ranking-name">P.A.R.</span>
+                                <div class="ranking-progress">
+                                    <div style="width: 91%;"></div>
+                                </div>
+                                <strong>91%</strong>
+                            </div>
+
+                            <div class="ranking-item">
+                                <span class="ranking-position">2</span>
+                                <span class="ranking-name">CD 1200 Outbound</span>
+                                <div class="ranking-progress">
+                                    <div style="width: 82%;"></div>
+                                </div>
+                                <strong>82%</strong>
+                            </div>
+
+                            <div class="ranking-item">
+                                <span class="ranking-position">3</span>
+                                <span class="ranking-name">
+                                    Abastecimento de Lojas
+                                </span>
+                                <div class="ranking-progress">
+                                    <div style="width: 76%;"></div>
+                                </div>
+                                <strong>76%</strong>
+                            </div>
+
+                            <div class="ranking-item">
+                                <span class="ranking-position">4</span>
+                                <span class="ranking-name">CD 1200 Inbound</span>
+                                <div class="ranking-progress">
+                                    <div style="width: 71%;"></div>
+                                </div>
+                                <strong>71%</strong>
+                            </div>
+
+                            <div class="ranking-item">
+                                <span class="ranking-position">5</span>
+                                <span class="ranking-name">Recebimento</span>
+                                <div class="ranking-progress warning">
+                                    <div style="width: 68%;"></div>
+                                </div>
+                                <strong>68%</strong>
+                            </div>
+
+                            <div class="ranking-item">
+                                <span class="ranking-position">6</span>
+                                <span class="ranking-name">Online</span>
+                                <div class="ranking-progress warning">
+                                    <div style="width: 63%;"></div>
+                                </div>
+                                <strong>63%</strong>
+                            </div>
+
+                            <div class="ranking-item">
+                                <span class="ranking-position">7</span>
+                                <span class="ranking-name">Pesados</span>
+                                <div class="ranking-progress danger">
+                                    <div style="width: 44%;"></div>
+                                </div>
+                                <strong>44%</strong>
+                            </div>
+
+                            <div class="ranking-item">
+                                <span class="ranking-position">8</span>
+                                <span class="ranking-name">Retorno</span>
+                                <div class="ranking-progress">
+                                    <div style="width: 0%;"></div>
+                                </div>
+                                <strong>—</strong>
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- ALERTAS -->
+                    <article class="dashboard-panel alerts-panel">
+
+                        <div class="panel-header">
+
+                            <div class="alert-title">
+                                <span class="material-symbols-outlined">
+                                    warning
+                                </span>
+
+                                <h2>Alertas críticos</h2>
+                            </div>
+
+                        </div>
+
+
+                        <div class="alert-list">
+
+                            <div class="alert-card critical">
+
+                                <div class="alert-card-header">
+                                    <strong>
+                                        Gargalo na expedição
+                                    </strong>
+
+                                    <span class="alert-status">
+                                        Crítico
+                                    </span>
+                                </div>
+
+                                <p>
+                                    3 docas paradas há mais de 40 minutos
+                                    aguardando conferência.
+                                </p>
+
+                            </div>
+
+
+                            <div class="alert-card warning">
+
+                                <div class="alert-card-header">
+                                    <strong>
+                                        Pendências acumuladas
+                                    </strong>
+
+                                    <span class="alert-status">
+                                        Atenção
+                                    </span>
+                                </div>
+
+                                <p>
+                                    620 volumes pendentes acima da média
+                                    das últimas 4 horas.
+                                </p>
+
+                            </div>
+
+
+                            <div class="alert-card success">
+
+                                <div class="alert-card-header">
+                                    <strong>
+                                        Meta parcial atingida
+                                    </strong>
+
+                                    <span class="alert-status">
+                                        Dentro do esperado
+                                    </span>
+                                </div>
+
+                                <p>
+                                    Turno A superou a meta de produtividade
+                                    em 8%.
+                                </p>
+
+                            </div>
+
+
+                            <div class="alert-card warning sectors-alert">
+
+                                <strong>
+                                    Setores em atenção
+                                </strong>
+
+                                <div class="sector-alert-list">
+                                    <span>Online</span>
+                                    <span>Pesados</span>
+                                    <span>Recebimento</span>
+                                    <span>Retorno</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </section>
+
+
+                <!-- DETALHES OPERACIONAIS -->
+                <section class="dashboard-panel operational-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Detalhes operacionais</h2>
+
+                            <p>
+                                Waves em andamento, quantidades e responsáveis.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="operational-table-wrapper">
+
+                        <table class="operational-table">
+
+                            <thead>
+                                <tr>
+                                    <th>REFERÊNCIA</th>
+                                    <th>STATUS</th>
+                                    <th>QUANTIDADE</th>
+                                    <th>EQUIPE</th>
+                                    <th>ATUALIZAÇÃO</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>WV-84120</td>
+                                    <td>
+                                        <span class="table-status executing">
+                                            Em execução
+                                        </span>
+                                    </td>
+                                    <td>1.240</td>
+                                    <td>Equipe Alfa</td>
+                                    <td>14:02</td>
+                                </tr>
+
+                                <tr>
+                                    <td>WV-84118</td>
+                                    <td>
+                                        <span class="table-status completed">
+                                            Concluído
+                                        </span>
+                                    </td>
+                                    <td>980</td>
+                                    <td>Equipe Beta</td>
+                                    <td>13:48</td>
+                                </tr>
+
+                                <tr>
+                                    <td>WV-84115</td>
+                                    <td>
+                                        <span class="table-status delayed">
+                                            Atrasado
+                                        </span>
+                                    </td>
+                                    <td>1.580</td>
+                                    <td>Equipe Gama</td>
+                                    <td>13:20</td>
+                                </tr>
+
+                                <tr>
+                                    <td>WV-84109</td>
+                                    <td>
+                                        <span class="table-status pending">
+                                            Pendente
+                                        </span>
+                                    </td>
+                                    <td>640</td>
+                                    <td>Apoio Noturno</td>
+                                    <td>12:55</td>
+                                </tr>
+
+                                <tr>
+                                    <td>WV-84102</td>
+                                    <td>
+                                        <span class="table-status completed">
+                                            Concluído
+                                        </span>
+                                    </td>
+                                    <td>2.110</td>
+                                    <td>Equipe Alfa</td>
+                                    <td>12:10</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
             </div>
+
         </section>
+
     </main>
-    
+
 </body>
 </html>
