@@ -13,7 +13,7 @@ const materiais = {
     vazia: new THREE.MeshLambertMaterial({
         color: CORES.vazia,
         transparent: true,
-        opacity: 0.25
+        opacity: 0.40
     })
 };
 
