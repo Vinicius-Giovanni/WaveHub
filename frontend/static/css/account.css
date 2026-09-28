@@ -33,7 +33,7 @@ body {
 .info-content > p {
     max-width: 460px;
     margin: 0;
-    color: var(--color-terciary);
+    color: var(--color-tertiary);
     font-size: 14px;
     line-height: 1.55;
 }
@@ -50,7 +50,7 @@ body {
     min-height: 35px;
     display: flex;
     align-items: center;
-    color: var(--color-terciary);
+    color: var(--color-tertiary);
     font-size: 14px;
 }
 
@@ -59,7 +59,7 @@ body {
     position: absolute;
     left: 36px;
     bottom: 18px;
-    color: var(--color-terciary);
+    color: var(--color-tertiary);
     font-size: 12px;
 }
 
@@ -98,7 +98,7 @@ body > main form {
 
 .form-header p {
     margin: 0;
-    color: var(--color-terciary);
+    color: var(--color-tertiary);
     font-size: 14px;
     line-height: 1.5;
 }
@@ -138,7 +138,7 @@ body > main form {
 
 .input .material-symbols-outlined {
     flex-shrink: 0;
-    color: var(--color-terciary);
+    color: var(--color-tertiary);
     font-size: 20px;
 }
 
@@ -149,19 +149,19 @@ body > main form {
     border: 0;
     outline: 0;
     background: transparent;
-    color: var(--color-terciary);
+    color: var(--color-tertiary);
     font-family: var(--font-body);
     font-size: 14px;
 }
 
 .input input::placeholder {
-    color: var(--color-terciary);
+    color: var(--color-tertiary);
 }
 
 .form-group small {
     display: block;
     margin-top: 8px;
-    color: var(--color-terciary);
+    color: var(--color-tertiary);
     font-size: 12px;
     line-height: 1.4;
 }
