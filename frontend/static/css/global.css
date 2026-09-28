@@ -13,7 +13,22 @@
   --bg-icon: #12334a;
   --bg-sidebar: #121c2d;
   --bg-card: #1b283a;
-  --bg-progress-bar: #283344; 
+  --bg-progress-bar: #283344;
+
+  /* Layout */
+  --sidebar-width: 290px;
+
+  /* Tokens específicos de dashboard (antes duplicados em dashboard.css) */
+  --text-primary: #e8ebf1;
+  --accent-cyan: #22d3ee;
+  --accent-blue: #38bdf8;
+  --color-positive: #22c55e;
+  --color-negative: #f87171;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-success: #22c55e;
+  --radius-lg: 16px;
+  --radius-sm: 8px;
 }
 
 /* Reset */

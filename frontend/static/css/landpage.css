@@ -7,7 +7,7 @@ body {
 .home-layout {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 290px 1fr;
+    grid-template-columns: var(--sidebar-width) 1fr;
 }
 
 /* Conteúdo */
@@ -64,7 +64,6 @@ body {
 .summary-card:hover {
     transform: translateY(-3px);
     border-color: var(--color-secondary);
-    background: var(--bg-card);
 }
 
 .summary-card-label {

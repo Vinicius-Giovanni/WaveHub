@@ -67,7 +67,6 @@ main > h1 + p {
 }
 
 .button:hover {
-    background: var(--color-secondary);
     transform: translateY(-2px);
     box-shadow: 0 8px 24px var(--box-shadow);
 }
@@ -143,7 +142,6 @@ main > h1 + p {
 .cards > div:not(.desc):hover {
     transform: translateY(-4px);
     border-color: var(--color-secondary);
-    background: var(--bg-card);
 }
 
 .cards > div:not(.desc) h2 {
