@@ -12,62 +12,7 @@
     <title>Cadastro</title>
 </head>
 <body>
-    <section class="about">
-
-        {%include 'components/brand.html'%}
-        
-        <div class="info-content">
-            <h2>
-                Sua central inteligente para
-                RPA, dashboards e gestão
-                operacional.
-            </h2>
-
-            <p>
-                Dedicação total a você! Acompanhe demanda,
-                pessoas alocadas e percentual de execução
-                sem trocar de sistema.
-            </p>
-
-            <ul>
-                <li>
-                    <span class="material-symbols-outlined icon">
-                        bar_chart
-                    </span>
-
-                    KPIs por setor em tempo real
-                </li>
-
-                <li>
-                    <span class="material-symbols-outlined icon">
-                        account_tree
-                    </span>
-
-                    Automações RPA prontas para executar
-                </li>
-
-                <li>
-                    <span class="material-symbols-outlined icon">
-                        hub
-                    </span>
-
-                    Inbound e outbound consolidados
-                </li>
-
-                <li>
-                    <span class="material-symbols-outlined icon">
-                        smart_toy
-                    </span>
-
-                    Bots de apoio à operação
-                </li>
-            </ul>
-        </div>
-
-        <footer>
-            WaveHub · Transformando dados em decisões inteligentes.
-        </footer>
-    </section>
+    {% include 'components/account_info.html' %}
 
     <main>
         <form action="/login" method="post">
