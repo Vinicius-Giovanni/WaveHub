@@ -19,7 +19,6 @@
 .sector-card:hover {
     transform: translateY(-3px);
     border-color: var(--color-secondary);
-    background: var(--bg-card);
 }
 
 .sector-card-header {
@@ -79,7 +78,6 @@
 
 .sector-card-metrics strong {
     color: var(--color-primary);
-
     font-family: var(--font-title);
     font-size: 20px;
     font-weight: 700;
