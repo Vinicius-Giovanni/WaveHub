@@ -19,7 +19,6 @@
 .sector-card:hover {
     transform: translateY(-3px);
     border-color: var(--color-secondary);
-    background: var(--bg-card);
 }
 
 .sector-card-header {
@@ -122,7 +121,6 @@
 
 .sector-card-button:hover {
     color: var(--color-secondary);
-    background: #2c394d;
 }
 
 

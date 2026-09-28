@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/static/css/global.css">
     <link rel="stylesheet" href="/static/css/landpage.css">
     <link rel="stylesheet" href="/static/css/sector_card.css">
+    <link rel="stylesheet" href="/static/css/header_pages.css">
+    <link rel="stylesheet" href="/static/css/sidebar.css">
     <title>Início</title>
 </head>
 <body>
@@ -133,7 +135,6 @@
                             <input
                                 type="date"
                                 id="data"
-                                value="14/09/2026"
                             >
                         </div>
                     </div>
@@ -242,154 +243,22 @@
                     </div>
 
                     <div class="sector-cards">
-                        <!-- inserir componestes card -->
-                        <article class="sector-card">
-                            <div class="sector-card-header">
-                                <div class="sector-card-icon">
-                                    <span class="material-symbols-outlined">
-                                        {{ icon }}
-                                    </span>
-                                </div>
-                                <div>
-                                    <h3>
-                                        <!-- setor -->
-                                        <!-- {{ title }} -->
-                                        CD 1200 Outbound
-                                    </h3>
-                                    <p>
-                                        Inbound · INB-1200
-                                        <!-- tipode expedição e setor -->
-                                        <!-- {{ type }} · {{ code }} -->
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="sector-card-metrics">
-                                <div>
-                                    <span>
-                                        Demanda
-                                    </span>
-
-                                    <strong>
-                                        <!-- {{ demand }} -->
-                                        21.480
-                                    </strong>
-                                </div>
-
-                                <div>
-                                    <span>
-                                        Pessoas
-                                    </span>
-
-                                    <strong>
-                                        <!-- {{ people }} -->
-                                        98
-                                    </strong>
-                                </div>
-
-                                <div>
-                                    <span>
-                                        Finalizado
-                                    </span>
-
-                                    <strong>
-                                        <!-- {{ completed }}% -->
-                                        71%
-                                    </strong>
-                                </div>
-                            </div>
-                            <div class="sector-progress">
-
-                                <!-- <span style="width: {{ progress }}%;"></span> -->
-
-                            </div>
-
-                            <a href="#" class="sector-card-button">
-                                <span>
-                                    Ver detalhes
-                                </span>
-
-                                <span class="material-symbols-outlined">
-                                    arrow_forward
-                                </span>
-                            </a>
-
-                        </article>
-
-                        <article class="sector-card">
-                            <div class="sector-card-header">
-                                <div class="sector-card-icon">
-                                    <span class="material-symbols-outlined">
-                                        {{ icon }}
-                                    </span>
-                                </div>
-                                <div>
-                                    <h3>
-                                        <!-- setor -->
-                                        <!-- {{ title }} -->
-                                        CD 1200 Outbound
-                                    </h3>
-                                    <p>
-                                        Inbound · INB-1200
-                                        <!-- tipode expedição e setor -->
-                                        <!-- {{ type }} · {{ code }} -->
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="sector-card-metrics">
-                                <div>
-                                    <span>
-                                        Demanda
-                                    </span>
-
-                                    <strong>
-                                        <!-- {{ demand }} -->
-                                        21.480
-                                    </strong>
-                                </div>
-
-                                <div>
-                                    <span>
-                                        Pessoas
-                                    </span>
-
-                                    <strong>
-                                        <!-- {{ people }} -->
-                                        98
-                                    </strong>
-                                </div>
-
-                                <div>
-                                    <span>
-                                        Finalizado
-                                    </span>
-
-                                    <strong>
-                                        <!-- {{ completed }}% -->
-                                        71%
-                                    </strong>
-                                </div>
-                            </div>
-                            <div class="sector-progress">
-
-                                <!-- <span style="width: {{ progress }}%;"></span> -->
-
-                            </div>
-
-                            <a href="#" class="sector-card-button">
-                                <span>
-                                    Ver detalhes
-                                </span>
-
-                                <span class="material-symbols-outlined">
-                                    arrow_forward
-                                </span>
-                            </a>
-
-                        </article>
-
-                        
+                        <!--
+                            Cards de setor gerados a partir do componente
+                            components/sector_card.html. Os valores abaixo
+                            reproduzem exatamente os dois cards que antes
+                            estavam hardcoded nesta página; em produção,
+                            "setores" deve vir do contexto passado pela view.
+                        -->
+                        {% set setores = setores or [
+                            { 'icon': 'warehouse', 'title': 'CD 1200 Outbound', 'type': 'Inbound', 'code': 'INB-1200', 'demand': '21.480', 'people': 98, 'completed': 71 },
+                            { 'icon': 'warehouse', 'title': 'CD 1200 Outbound', 'type': 'Inbound', 'code': 'INB-1200', 'demand': '21.480', 'people': 98, 'completed': 71 }
+                        ] %}
+                        {% for setor in setores %}
+                            {% with icon=setor.icon, title=setor.title, type=setor.type, code=setor.code, demand=setor.demand, people=setor.people, completed=setor.completed, progress=setor.completed %}
+                                {% include 'components/sector_card.html' %}
+                            {% endwith %}
+                        {% endfor %}
                     </div>
                 </section>
             </div>
