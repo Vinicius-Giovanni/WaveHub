@@ -14146,10 +14146,18 @@
 {"id":"098-068-01","rua":98,"local":68,"nivel":1,"x":132,"y":0,"z":471,"largura":1.7,"altura":8,"profundidade":5,"tipo":"RK2"},
 {"id":"098-070-01","rua":98,"local":70,"nivel":1,"x":136,"y":0,"z":471,"largura":1.7,"altura":8,"profundidade":5,"tipo":"RK2"},
 
-{"id":"100-001-1A","rua":100,"local":1,"nivel":"1A","x":0,"y":0,"z":475.5,"largura":1.5,"altura":0.5,"profundidade":3,"tipo":"RK2"},
+{"id":"100-001-1A","rua":100,"local":1,"nivel":"1A","x":0,"y":0,"z":475.5,"largura":1.5,"altura":0.5,"profundidade":3,"tipo":"PTP"},
+{"id":"100-001-1B","rua":100,"local":1,"nivel":"1B","x":1.85,"y":0,"z":475.5,"largura":1.5,"altura":0.5,"profundidade":3,"tipo":"PTP"},
+{"id":"100-001-2A","rua":100,"local":1,"nivel":"2A","x":0,"y":0.7,"z":475.5,"largura":1.5,"altura":0.5,"profundidade":3,"tipo":"PTP"},
+{"id":"100-001-2B","rua":100,"local":1,"nivel":"2B","x":1.85,"y":0.7,"z":475.5,"largura":1.5,"altura":0.5,"profundidade":3,"tipo":"PTP"},
 
+{"id":"100-002-1A","rua":100,"local":2,"nivel":"1A","x":3.7,"y":0,"z":475.5,"largura":1.5,"altura":0.5,"profundidade":3,"tipo":"PTP"},
+{"id":"100-002-1B","rua":100,"local":2,"nivel":"1B","x":5.55,"y":0,"z":475.5,"largura":1.5,"altura":0.5,"profundidade":3,"tipo":"PTP"},
+{"id":"100-002-1C","rua":100,"local":2,"nivel":"1C","x":7.4,"y":0,"z":475.5,"largura":1.5,"altura":0.5,"profundidade":3,"tipo":"PTP"},
 
-
+{"id":"100-002-1A","rua":100,"local":2,"nivel":"1A","x":3.7,"y":0.7,"z":475.5,"largura":1.5,"altura":0.5,"profundidade":3,"tipo":"PTP"},
+{"id":"100-002-1B","rua":100,"local":2,"nivel":"1B","x":5.55,"y":0.7,"z":475.5,"largura":1.5,"altura":0.5,"profundidade":3,"tipo":"PTP"},
+{"id":"100-002-1C","rua":100,"local":2,"nivel":"1C","x":7.4,"y":0.7,"z":475.5,"largura":1.5,"altura":0.5,"profundidade":3,"tipo":"PTP"},
 
 
 
