@@ -20,5 +20,5 @@ export const ZOOM = {
 
 export const CORES = {
     ocupada: 0x1565c0,
-    vazia: 0xcfd3d6
+    vazia: 0xffffff
 }

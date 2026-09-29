@@ -16,6 +16,7 @@ const container = document.getElementById("estoque-3d");
 
 const scene = criarCena();
 const camera = criarCamera(container);
+scene.add(camera);
 const renderer = criarRenderer(container);
 const viewHelper = new ViewHelper(camera, renderer.domElement);
 const raycaster = new THREE.Raycaster();

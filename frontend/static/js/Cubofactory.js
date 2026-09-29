@@ -8,12 +8,12 @@ const materiais = {
     ocupada: new THREE.MeshLambertMaterial({
         color: CORES.ocupada,
         transparent: true,
-        opacity: 0.9
+        opacity: 1
     }),
     vazia: new THREE.MeshLambertMaterial({
         color: CORES.vazia,
         transparent: true,
-        opacity: 0.40
+        opacity: 1
     })
 };
 
