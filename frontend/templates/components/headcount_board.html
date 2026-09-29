@@ -1,0 +1,19 @@
+<section class="headcount-board">
+    <div class="headcount-board-header">
+        <div>
+            <h2>Meu quadro</h2>
+            <p>Colaboradores vinculados à sua gestão</p>
+        </div>
+        <a href="#" class="headcount-link">
+            Ver todos
+        <span class="material-symbols-outlined">arrow_forward</span>
+    </a>
+    </div>
+    {% include 'components/headcount_filters.html' %}
+
+    <div class="headcount-results-info">
+        <span id="headcountResultsCount">{{ colaboradores|length }} resultados na prévia</span>
+        <span class="headcount-results-pill">{{ total_count }} colaboradores no quadro</span>
+    </div>
+    {% include 'components/headcount_table.html' %}
+</section>

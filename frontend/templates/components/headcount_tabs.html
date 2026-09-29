@@ -1,0 +1,16 @@
+<nav class="headcount-tabs">
+    <a href="#"{% if active_tab == 'overview' %} class="active"{% endif %}>
+        <span class="material-symbols-outlined">grid_view</span>
+        Visão geral
+    </a>
+
+    <a href="#"{% if active_tab == 'quadro' %} class="active"{% endif %}>
+        <span class="material-symbols-outlined">group</span>
+        Meu quadro
+    </a>
+
+    <a href="#" {% if active_tab == 'atualizacoes' %} class="active"{% endif %}>
+        <span class="material-symbols-outlined">history</span>
+        Atualizações
+    </a>
+</nav>
