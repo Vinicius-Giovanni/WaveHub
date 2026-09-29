@@ -12,37 +12,32 @@
     <link rel="stylesheet" href="/static/css/sidebar.css">
     <link rel="stylesheet" href="/static/css/headcount.css">
 
-    <title>Headcount · Visão geral</title>
+    <title>Headcount · Meu quadro</title>
 </head>
 <body>
     <div class="home-layout">
+
         {% set active_page = 'headcount' %}
         {% include 'components/sidebar.html' %}
 
         <section class="home-content">
+
             {% set header_title = 'Central de gestão' %}
             {% set header_user_name = 'Olá, Thainá' %}
             {% set header_user_role = 'Gestão' %}
             {% include 'components/header_pages.html' %}
 
-            {% set active_tab = 'overview' %}
+            {% set active_tab = 'quadro' %}
             {% include 'components/headcount_tabs.html' %}
-            
+
             <div class="home-container">
 
-                {% set intro_title = 'Olá, Thainá' %}
-                {% set intro_lead = 'Acompanhe e gerencie o quadro de colaboradores sob sua responsabilidade.' %}
+                {% set intro_eyebrow = 'Gestão de pessoas' %}
+                {% set intro_title = 'Meu quadro' %}
+                {% set intro_lead = 'Encontre e acompanhe as pessoas do seu quadro em um só lugar.' %}
                 {% include 'components/headcount_page_intro.html' %}
 
                 <!-- Dados mockados -->
-                {% set resumo = resumo or {
-                    'meu_quadro': 127,
-                    'ativos': 118,
-                    'ferias': '05',
-                    'afastados': '04'
-                } %}
-                {% include 'components/headcount_summary.html' %}
-
                 {% set colaboradores = colaboradores or [
                     { 'matricula': '102938', 'nome': 'João da Silva', 'cargo': 'Supervisor de vendas', 'empresa': 'Grupo Casas Bahia', 'empresa_slug': 'grupo-casas-bahia', 'turno': '1º Turno', 'turno_slug': '1-turno', 'status_label': 'Ativo', 'status_class': 'active', 'status_slug': 'ativo' },
                     { 'matricula': '104521', 'nome': 'Maria Oliveira', 'cargo': 'Analista de operações', 'empresa': 'Bolt', 'empresa_slug': 'bolt', 'turno': '2º Turno', 'turno_slug': '2-turno', 'status_label': 'Ativo', 'status_class': 'active', 'status_slug': 'ativo' },

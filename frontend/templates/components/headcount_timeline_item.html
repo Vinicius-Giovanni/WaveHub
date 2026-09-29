@@ -1,0 +1,29 @@
+<div class="timeline-item">
+    <span class="timeline-dot"></span>
+
+    <div class="timeline-date">
+        {{ item.data }}
+        <time>{{ item.hora }}</time>
+    </div>
+
+    <div class="timeline-card">
+        <div class="timeline-card-header">
+            <div>
+                <strong>{{ item.nome }}</strong>
+                <span>Matrícula {{ item.matricula }}</span>
+            </div>
+
+            <span class="timeline-badge">{{ item.badge }}</span>
+        </div>
+
+        <div class="timeline-change">
+            <span>{{ item.de }}</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+            <strong>{{ item.para }}</strong>
+        </div>
+
+        <div class="timeline-footer">
+            Atualizado por <strong>{{ item.atualizado_por }}</strong>
+        </div>
+    </div>
+</div>

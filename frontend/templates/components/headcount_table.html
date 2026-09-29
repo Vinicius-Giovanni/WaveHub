@@ -29,13 +29,13 @@
                 data-name="{{ pessoa.nome }}"
                 data-matricula="{{ pessoa.matricula }}"
                 data-status="{{ pessoa.status }}"
-                data-unit="{{ pessoa.unidade }}"
+                data-company="{{ pessoa.empresa }}"
                 data-shift="{{ pessoa.turno }}"
             >
                 <td> {{ pessoa.matricula }}</td>
                 <td class="employee-name">{{pessoa.nome}}</td>
                 <td>{{pessoa.cargo}}</td>
-                <td>{{pessoa.unidade}}</td>
+                <td>{{pessoa.empresa}}</td>
                 <td>{{pessoa.turno}}</td>
                 <td>
                     <span class="employee-status {{ pessoa.status_class }}">
