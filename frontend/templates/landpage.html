@@ -243,13 +243,6 @@
                     </div>
 
                     <div class="sector-cards">
-                        <!--
-                            Cards de setor gerados a partir do componente
-                            components/sector_card.html. Os valores abaixo
-                            reproduzem exatamente os dois cards que antes
-                            estavam hardcoded nesta página; em produção,
-                            "setores" deve vir do contexto passado pela view.
-                        -->
                         {% set setores = setores or [
                             { 'icon': 'warehouse', 'title': 'CD 1200 Outbound', 'type': 'Inbound', 'code': 'INB-1200', 'demand': '21.480', 'people': 98, 'completed': 71 },
                             { 'icon': 'warehouse', 'title': 'CD 1200 Outbound', 'type': 'Inbound', 'code': 'INB-1200', 'demand': '21.480', 'people': 98, 'completed': 71 }
