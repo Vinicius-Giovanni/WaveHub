@@ -15,6 +15,22 @@
     <title>Headcount · Visão geral</title>
 </head>
 <body>
-    
+    <div class="home-layout">
+        {% set active_page = 'headcount' %}
+        {% include 'components/sidebar.html' %}
+
+        <section class="home-content">
+            {% set header_title = 'Central de gestão' %}
+            {% set header_user_name = 'Olá, Thainá' %}
+            {% set header_user_role = 'Gestão' %}
+            {% include 'components/header_pages.html' %}
+
+            {% set active_tab = 'overview' %}
+            {% include 'components/headcount_tabs.html' %}
+            
+
+        </section>
+
+    </div>
 </body>
 </html>

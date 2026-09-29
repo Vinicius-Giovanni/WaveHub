@@ -1,0 +1,54 @@
+<div class="">
+    <table class="employee-table">
+        <thead>
+            <tr>
+                <th>UNIDADE</th>
+                <th>EMPRESA</th>
+                <th>MATRÍCULA</th>
+                <th>NOME</th>
+                <th>STATUS</th>
+                <th>DATA DE ADMISSÃO</th>
+                <th>CARGO</th>
+                <th>CC</th>
+                <th>GESTOR</th>
+                <th>COORDENADOR</th>
+                <th>TURNO</th>
+                <th>ENTRADA</th>
+                <th>SAÍDA</th>
+                <th>SEXO</th>
+                <th>PCD</th>
+                <th>DESC 3</th>
+                <th>DESC 4</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for pessoa in colaboradores %}
+            <tr
+                data-name="{{ pessoa.nome }}"
+                data-matricula="{{ pessoa.matricula }}"
+                data-status="{{ pessoa.status }}"
+                data-unit="{{ pessoa.unidade }}"
+                data-shift="{{ pessoa.turno }}"
+            >
+                <td> {{ pessoa.matricula }}</td>
+                <td class="employee-name">{{pessoa.nome}}</td>
+                <td>{{pessoa.cargo}}</td>
+                <td>{{pessoa.unidade}}</td>
+                <td>{{pessoa.turno}}</td>
+                <td>
+                    <span class="employee-status {{ pessoa.status_class }}">
+                        {{ pessoa.status_label }}
+                    </span>
+                </td>
+                <td>
+                    <a href="#" class="employee-row-link" aria-label="Ver detalhes de {{pessoa.nome}}">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
