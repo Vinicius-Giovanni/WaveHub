@@ -1,0 +1,110 @@
+.headcount-eyebrow {
+    margin-bottom: 8px;
+    color: var(--color-secondary);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+/* Navegação horizontal */
+
+.headcount-tabs {
+    height: 56px;
+    margin: 0 -24px;
+    padding: 0 -24px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.headcount-tabs a {
+    height: 36px;
+    padding: 0 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-tertiary);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.headcount-tabs a .material-symbols-outlined {
+    font-size: 18px;
+}
+
+.headcount-tabs a:hover {
+    color: var(--color-secondary);
+}
+
+.headcount-tabs a.active {
+    color: var(--color-secondary);
+    background: var(--box-shadow);
+}
+
+@media (max-width: 600px) {
+    .headcount-tabs {
+        margin: 0 -16px;
+        padding: 0 16px;
+    }
+}
+
+.headcount-board {
+    margin-top: 28px;
+}
+
+.headcount-board-header {
+    margin-bottom: 14px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.headcount-board-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.headcount-board-header p {
+    margin-top: 2px;
+    color: var(--color-tertiary);
+    font-size: 14px;
+}
+
+.headcount-link {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+}
+
+.headcount-link .material-symbols-outlined {
+    font-size: 18px;
+}
+
+.headcount-link:hover {
+    opacity: 0.8;
+}
+
+.headcount-results-info {
+    margin: 20px 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--color-tertiary);
+}
+
